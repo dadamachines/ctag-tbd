@@ -1,5 +1,5 @@
 {
-  "version": "0.3.2",
-  "date": "2026-03-12",
-  "description": "Factory preset protection, preset value safety, auto-UI selection, all macro definitions & presets"
+  "version": "0.3.3",
+  "date": "2026-03-13",
+  "description": "New WebUI Updater with light theme, reinstall support, and version history"
 }
