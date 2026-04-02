@@ -51,7 +51,7 @@ Both flags live in `main/Kconfig.projbuild` under **CTAG TBD Configuration → T
 | otadata | data | ota | 0xd000 | 8 KB |
 | phy_init | data | phy | 0xf000 | 4 KB |
 | ota_0 | app | ota_0 | 0x10000 | 5 MB |
-| ota_1 | app | ota_1 | — | 1 MB |
+| ota_1 | app | ota_1 | — | 5 MB |
 
 ### Config A / Config B — Flash-only (`partitions_no_sd.csv`)
 

@@ -90,7 +90,7 @@ Troubleshooting
 
 - **Missing xxh128sum**: If you see an error related to ``XXH128SUM``, install ``xxhash`` (``brew install xxhash`` on macOS).
 - **Submodule Errors**: If you encounter errors about missing files in ``components/ableton_link`` or others, run ``git submodule update --init --recursive``.
-- **Partition Size Warning**: You may see a warning: "app partitions are too small for binary". The ``ota_0`` partition (5MB) is sufficient for the initial flash, but the ``ota_1`` partition (1MB) is too small for OTA updates.
+- **Partition Size Warning**: If you see a warning: "app partitions are too small for binary", ensure the partition table is up to date. Both ``ota_0`` and ``ota_1`` are 5 MB on the 16 MB flash — sufficient for the firmware and for OTA updates.
 
 Simulator
 =========
