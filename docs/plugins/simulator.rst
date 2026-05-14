@@ -255,8 +255,13 @@ Plugins to Try
 Most plugins fall into three groups; here's what works well in the simulator and what needs
 extra setup:
 
-**Synth plugins --- work out of the box** (load one on channel A, then open ``/ctrl`` and
-hit a trigger / send a note):
+**Synth plugins --- legacy ctag-tbd Eurorack-style plugins**, no MIDI input. Load one on
+channel A; play it either by toggling its trigger / gate bool params (e.g. ``Karpuskl``'s
+``Trigger``) directly in the **main WebUI** — each off→on click acts as a gate edge — or
+by routing those params via the small dropdown next to each parameter and driving them from
+``/ctrl``'s *CV / Triggers / Pots* tab (see *The Control page* below for which dropdown
+entries are actually wired in the simulator). The default ``/ctrl`` tab —
+*GrooveBoxRack (MIDI)* — does **not** drive these plugins.
 
 - ``TBD03`` --- TB-303 emulation
 - ``MacOsc`` / ``MacOscDuo`` --- Mutable Braids oscillator
@@ -352,9 +357,19 @@ TBD's hardware modulation inputs: **2 trigger/gate inputs** (manual gate button 
 **4 CV inputs** and the **2 front-panel pots** (manual slider or an LFO / step generator). Almost
 every ctag-tbd plugin is Eurorack-style and is driven *only* through these. You don't address a
 parameter directly here --- instead, in the **main WebUI** you set the small dropdown next to a
-parameter to ``CV0`` / ``TRIG0`` / ``POT0`` …, and this tab drives that input. (Example:
-``DrumRack`` --- map each drum's ``*_trigger`` parameter to a trigger input, then hit the gate
-buttons.)
+parameter to one of the routing-source entries, and this tab drives that input.
+
+.. note::
+
+   The routing dropdown is labelled with the **dada platform's IOCaps source names**
+   (``A_NOTE``, ``A_VELO``, ``B_NOTE`` … then a long tail). In this simulator only the
+   **first 2 trigger entries and first 4 CV entries** are actually wired: they map to
+   TRIG 0 / TRIG 1 and CV 0–3 on this tab. Routing a parameter to a later entry
+   (``B_NOTE``, ``C_NOTE`` …) reads past the end of the simulator's stimulus arrays
+   and yields no audible signal — pick the first entries to receive signal.
+
+(Example: ``DrumRack`` --- map each drum's ``*_trigger`` parameter to the first trigger
+entry in the dropdown, then hit that gate button on this tab.)
 
 Developing Plugins with the Simulator
 =====================================
