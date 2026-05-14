@@ -48,6 +48,11 @@ endif()
 
 #rtaudio
 set(RTAUDIO_BUILD_STATIC_LIBS TRUE)
+# macOS arm64: a stray Intel /usr/local/lib/libjack.dylib trips RtAudio's
+# auto-detect and breaks linking. Force off so the Apple-Silicon build works.
+if(APPLE AND CMAKE_SYSTEM_PROCESSOR STREQUAL "arm64")
+    set(RTAUDIO_API_JACK OFF CACHE BOOL "Build JACK audio server API" FORCE)
+endif()
 add_subdirectory(rtaudio)
 
 #esp-dsp
