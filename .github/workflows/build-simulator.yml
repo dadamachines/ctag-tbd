@@ -1,16 +1,29 @@
-# Build Simulator — compile-check the desktop simulator on Ubuntu, run the
-# headless smoke tests (routing-test + rack-lint).  Catches build breakage
-# from simulator/, components/, or rack-registry/synthdefinitions drift on
-# any PR or push that touches those paths.
+# Build Simulator — compile-check the desktop simulator on Ubuntu and run
+# the portable rack-lint smoke test.  Catches build breakage from
+# simulator/, components/, or rack-registry/synthdefinitions drift on any
+# PR or push that touches those paths.
 #
-# Not a substitute for actual hardware testing — the simulator shares ~99%
-# of its DSP code with the firmware, but I/O peripherals are stubbed and
-# this job runs on Linux (so it won't catch macOS-specific issues like the
-# arm64 + Intel-libjack link conflict that PR #18 fixed).  For that, the
-# firmware build-check in ci.yml + manual hardware verification stay
-# authoritative.  This job mainly protects external simulator-only PRs
-# (and the docs/tutorials that lean on the simulator) from regressing
-# silently.
+# What this DOES check:
+#   * `tbd-sim`, `load-test`, `routing-test`, `rack-lint` all build cleanly
+#     on Linux GCC (catches transitive-include / macOS-only assumptions)
+#   * `./rack-lint` runs and the runtime voice registry matches the
+#     contents of sdcard_image/factory/synthdefinitions.json
+#   * `./tbd-sim --help` runs without crashing (smoke check on the linked
+#     binary)
+#
+# What this does NOT check:
+#   * `./routing-test`'s phase-3 audio fingerprint — that's byte-equality
+#     on formatted floats and drifts between Linux GCC and Apple clang at
+#     the bit level. Until the comparator is tolerance-aware, the test
+#     stays a *local* (macOS) tool; CI just verifies it links.
+#   * macOS-specific build issues (the arm64 + Intel-libjack conflict
+#     that PR #18 fixed wouldn't fail on Ubuntu) — those need a
+#     contributor on that platform or a maintainer-side macOS runner.
+#   * Firmware (ESP-IDF cross-compile) — that's `ci.yml`.
+#
+# Together with `ci.yml`'s firmware build-check, this job is intended to
+# give external contributors fast PR feedback on the most common ways to
+# break the simulator without realising it.
 
 name: Build Simulator
 
@@ -71,15 +84,21 @@ jobs:
           cd simulator/build
           make -j"$(nproc)" tbd-sim load-test routing-test rack-lint
 
-      - name: routing-test — golden-snapshot
-        run: |
-          cd simulator/build
-          ./routing-test
-
+      # rack-lint cross-checks the runtime voice registry against
+      # synthdefinitions.json — pure text comparison, fully portable.
       - name: rack-lint — voice-registry vs synthdefinitions.json
         run: |
           cd simulator/build
           ./rack-lint
+
+      # routing-test's track→machine map is portable, but its
+      # phase-3 audio-fingerprint comparison is byte-equality on
+      # formatted floats and drifts between Linux GCC / Apple clang
+      # at the bit level. Until the comparator is tolerance-aware
+      # we only require that routing-test BUILDS cleanly (covered
+      # by the "Build" step above) — we don't gate on running it
+      # in CI. Run locally with `./routing-test` for regression
+      # detection on intentional topology changes.
 
       - name: Confirm tbd-sim binary exists + reports help
         run: |

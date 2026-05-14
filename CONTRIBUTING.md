@@ -338,14 +338,17 @@ the dev repo.
 Runs on PRs / pushes that touch `simulator/`, `components/`, or the rack
 data (`sdcard_image/factory/synthdefinitions.json`,
 `sdcard_image/factory/plugins/`). Builds the desktop simulator on Ubuntu
-(`tbd-sim` + `load-test` + `routing-test` + `rack-lint`) and runs the two
-headless smoke tests:
+(`tbd-sim` + `load-test` + `routing-test` + `rack-lint`) and runs the
+portable smoke test:
 
-- **`routing-test`** — asserts the GrooveBoxRack track→machine map matches
-  the golden snapshot (catches "I broke ch12's default machine assignment").
 - **`rack-lint`** — cross-checks the runtime voice registry against
   `synthdefinitions.json` (catches "JSON lists machine X but no voice
   flips on for it").
+
+`routing-test` is built but not run in CI — its phase-3 audio fingerprint
+comparison is byte-equality on formatted floats and drifts between Linux
+GCC and Apple clang. Until that gets a tolerance-aware comparator, it
+stays a local (macOS) tool; CI just verifies it links cleanly.
 
 Linux-only — won't catch macOS-specific build issues (those need a
 maintainer or a contributor with that platform to verify locally). Useful
