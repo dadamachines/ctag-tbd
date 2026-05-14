@@ -21,6 +21,7 @@ respective component folders / files if different from this license.
 
 #pragma once
 
+#include <cstdint>
 #include "DrumModel.hpp"
 #include "stmlib/dsp/filter.h"
 #include "helpers/ctagADEnv.hpp"
