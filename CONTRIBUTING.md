@@ -69,8 +69,10 @@ testing. At each public release, a fresh squashed snapshot is pushed to
 | Event | Workflow | What happens |
 |-------|----------|-------------|
 | PR against `dada-tbd-master` or `staging` (firmware files changed) | `ci.yml` (public repo) | Build check — validates firmware compiles. No release. |
+| PR against `dada-tbd-master` or `staging` (simulator / components / rack-data files changed) | `build-simulator.yml` (public repo) | Build the desktop simulator on Ubuntu + run `routing-test` and `rack-lint` headless smoke tests. |
 | Push to `dada-tbd-master` | `deploy-docs.yml` (public repo) | Docs rebuild + deploy to GitHub Pages |
 | Push to `staging` (firmware files changed) | `ci.yml` (public repo) | Build check |
+| Push to `staging` (simulator / components / rack-data files changed) | `build-simulator.yml` (public repo) | Same as the PR check above |
 | Push to `ctag-tbd-dev` `staging` | `staging-release.yml` (dev repo) | Full build → GitHub pre-release → CDN staging channel |
 | Push to `ctag-tbd-dev` `feature-test/*` | `feature-test-release.yml` (dev repo) | Full build → GitHub pre-release → CDN per-feature channel |
 | Push `v*` tag on `ctag-tbd-dev` `dada-tbd-master` | `create-release.yml` (dev repo) | Full build → GitHub Release → CDN stable channel |
@@ -330,6 +332,24 @@ Compile-check only. Builds the full firmware in Docker
 a release** and **does not push to the CDN** — the public repo doesn't
 hold the CDN token. Hardware testing happens after maintainers drain to
 the dev repo.
+
+### Public-repo simulator build (`build-simulator.yml` in `dadamachines/ctag-tbd`)
+
+Runs on PRs / pushes that touch `simulator/`, `components/`, or the rack
+data (`sdcard_image/factory/synthdefinitions.json`,
+`sdcard_image/factory/plugins/`). Builds the desktop simulator on Ubuntu
+(`tbd-sim` + `load-test` + `routing-test` + `rack-lint`) and runs the two
+headless smoke tests:
+
+- **`routing-test`** — asserts the GrooveBoxRack track→machine map matches
+  the golden snapshot (catches "I broke ch12's default machine assignment").
+- **`rack-lint`** — cross-checks the runtime voice registry against
+  `synthdefinitions.json` (catches "JSON lists machine X but no voice
+  flips on for it").
+
+Linux-only — won't catch macOS-specific build issues (those need a
+maintainer or a contributor with that platform to verify locally). Useful
+guard against the most common simulator-breaking changes nevertheless.
 
 ### Docs Deploy (`deploy-docs.yml` in `dadamachines/ctag-tbd`)
 

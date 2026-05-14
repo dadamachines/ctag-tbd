@@ -1,0 +1,88 @@
+# Build Simulator — compile-check the desktop simulator on Ubuntu, run the
+# headless smoke tests (routing-test + rack-lint).  Catches build breakage
+# from simulator/, components/, or rack-registry/synthdefinitions drift on
+# any PR or push that touches those paths.
+#
+# Not a substitute for actual hardware testing — the simulator shares ~99%
+# of its DSP code with the firmware, but I/O peripherals are stubbed and
+# this job runs on Linux (so it won't catch macOS-specific issues like the
+# arm64 + Intel-libjack link conflict that PR #18 fixed).  For that, the
+# firmware build-check in ci.yml + manual hardware verification stay
+# authoritative.  This job mainly protects external simulator-only PRs
+# (and the docs/tutorials that lean on the simulator) from regressing
+# silently.
+
+name: Build Simulator
+
+on:
+  # External contributors PR against `staging`; maintainer pushes to both.
+  pull_request:
+    branches: [dada-tbd-master, staging]
+    paths:
+      - "simulator/**"
+      - "components/**"
+      - "sdcard_image/factory/synthdefinitions.json"
+      - "sdcard_image/factory/plugins/**"
+      - ".github/workflows/build-simulator.yml"
+
+  push:
+    branches: [dada-tbd-master, staging]
+    paths:
+      - "simulator/**"
+      - "components/**"
+      - "sdcard_image/factory/synthdefinitions.json"
+      - "sdcard_image/factory/plugins/**"
+      - ".github/workflows/build-simulator.yml"
+
+concurrency:
+  group: build-simulator-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-simulator:
+    name: Build Simulator + headless smoke tests (Ubuntu)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential cmake \
+            libboost-filesystem-dev libboost-thread-dev libboost-program-options-dev \
+            libasound2-dev
+
+      - name: Check out repo (recursive)
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 1
+
+      - name: Configure (cmake)
+        run: |
+          cd simulator
+          mkdir -p build
+          cd build
+          cmake ..
+
+      - name: Build (tbd-sim + load-test + routing-test + rack-lint)
+        run: |
+          cd simulator/build
+          make -j"$(nproc)" tbd-sim load-test routing-test rack-lint
+
+      - name: routing-test — golden-snapshot
+        run: |
+          cd simulator/build
+          ./routing-test
+
+      - name: rack-lint — voice-registry vs synthdefinitions.json
+        run: |
+          cd simulator/build
+          ./rack-lint
+
+      - name: Confirm tbd-sim binary exists + reports help
+        run: |
+          cd simulator/build
+          ls -l tbd-sim
+          ./tbd-sim --help | head -20
