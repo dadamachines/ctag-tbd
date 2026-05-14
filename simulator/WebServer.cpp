@@ -68,6 +68,37 @@ static string getMimeType(const string& path) {
     return "application/octet-stream";
 }
 
+// IO capabilities JSON — matches firmware IOCapabilities.hpp (platform "dada").
+// Served by both /api/v1/getIOCaps and /api/v2/device?action=getIOCaps so the WebUI's
+// per-parameter CV/TRIG routing dropdowns populate in the simulator.
+static const string kIOCapsJSON =
+    "{\"HWV\":\"simulator\",\"FWV\":\"v0.9.5-sim\",\"p\":\"dada\","
+    "\"t\":["
+    "\"A_NOTE\",\"A_VELO\",\"A_P_PROG\",\"A_P_AT\","
+    "\"B_NOTE\",\"B_VELO\",\"B_P_PROG\",\"B_P_AT\","
+    "\"C_NOTE\",\"C_VELO\",\"C_P_PROG\",\"C_P_AT\","
+    "\"D_NOTE\",\"D_VELO\",\"D_P_PROG\",\"D_P_AT\","
+    "\"A_75_P_C1\",\"A_76_P_C#1\",\"A_77_P_D1\",\"A_78_P_D#1\","
+    "\"B_75_P_E1\",\"B_76_P_F1\",\"B_77_P_F#1\",\"B_78_P_G1\","
+    "\"C_75_P_G#1\",\"C_76_P_A1\",\"C_77_P_A#1\",\"C_78_P_B1\","
+    "\"D_75_P_C2\",\"D_76_P_C#2\",\"D_77_P_D2\",\"D_78_P_D#2\","
+    "\"G_AT\",\"G_FX1_12\",\"G_FX2_13\",\"G_SUST_64\",\"G_PORT_65\",\"G_SSTN_66\",\"G_SOFT_67\",\"G_HOLD_69\","
+    "\"ET_41\",\"ET_42\",\"ET_43\",\"ET_44\",\"ET_45\",\"ET_46\",\"ET_47\",\"ET_48\",\"ET_49\",\"ET_50\","
+    "\"ET_51\",\"ET_52\",\"ET_53\",\"ET_54\",\"ET_55\",\"ET_56\",\"ET_57\",\"ET_58\",\"ET_59\",\"ET_60\""
+    "],"
+    "\"cv\":["
+    "\"A_NOTE\",\"A_VELO\",\"A_P_BANK\",\"A_P_SBNK\",\"A_P_PRG\",\"A_P_PB\",\"A_P_PB_LG\",\"A_P_AT\",\"A_P_MW_1\",\"A_P_BC_2\","
+    "\"B_NOTE\",\"B_VELO\",\"B_P_BANK\",\"B_P_SBNK\",\"B_P_PRG\",\"B_P_PB\",\"B_P_PB_LG\",\"B_P_AT\",\"B_P_MW_1\",\"B_P_BC_2\","
+    "\"C_NOTE\",\"C_VELO\",\"C_P_BANK\",\"C_P_SBNK\",\"C_P_PRG\",\"C_P_PB\",\"C_P_PB_LG\",\"C_P_AT\",\"C_P_MW_1\",\"C_P_BC_2\","
+    "\"D_NOTE\",\"D_VELO\",\"D_P_BANK\",\"D_P_SBNK\",\"D_P_PRG\",\"D_P_PB\",\"D_P_PB_LG\",\"D_P_AT\",\"D_P_MW_1\",\"D_P_BC_2\","
+    "\"A_P_RES_71\",\"A_P_REL_72\",\"A_P_ATK_73\",\"A_P_CUT_74\","
+    "\"B_P_RES_71\",\"B_P_REL_72\",\"B_P_ATK_73\",\"B_P_CUT_74\","
+    "\"C_P_RES_71\",\"C_P_REL_72\",\"C_P_ATK_73\",\"C_P_CUT_74\","
+    "\"D_P_RES_71\",\"D_P_REL_72\",\"D_P_ATK_73\",\"D_P_CUT_74\","
+    "\"G_PB\",\"G_PB_LG\",\"G_AT\",\"G_MW_1\",\"G_BC_2\",\"G_FOOT_4\",\"G_DAT_6\",\"G_VOL_7\",\"G_BAL_8\",\"G_PAN_10\","
+    "\"G_XPR_11\",\"G_FX1_12\",\"G_FX2_13\",\"G_SUST_64\",\"G_PORT_65\",\"G_SOST_66\",\"G_SOFT_67\",\"G_HOLD_69\""
+    "]}";
+
 
 void WebServer::Start() {
     // HTTP-server at port 8080 using 1 thread
@@ -141,40 +172,9 @@ void WebServer::Start() {
 
     server.resource["^/api/v1/getIOCaps$"]["GET"] = [](shared_ptr<HttpServer::Response> response,
                                                         shared_ptr<HttpServer::Request> request) {
-        // Retrieve string:
-        auto content = request->content.string();
         SimpleWeb::CaseInsensitiveMultimap header;
         header.emplace("Content-Type", "application/json");
-        // Full IOCaps matching firmware IOCapabilities.hpp (platform dada)
-        string const s(
-            "{\"HWV\":\"simulator\",\"FWV\":\"v0.9.5-sim\",\"p\":\"dada\","
-            "\"t\":["
-            "\"A_NOTE\",\"A_VELO\",\"A_P_PROG\",\"A_P_AT\","
-            "\"B_NOTE\",\"B_VELO\",\"B_P_PROG\",\"B_P_AT\","
-            "\"C_NOTE\",\"C_VELO\",\"C_P_PROG\",\"C_P_AT\","
-            "\"D_NOTE\",\"D_VELO\",\"D_P_PROG\",\"D_P_AT\","
-            "\"A_75_P_C1\",\"A_76_P_C#1\",\"A_77_P_D1\",\"A_78_P_D#1\","
-            "\"B_75_P_E1\",\"B_76_P_F1\",\"B_77_P_F#1\",\"B_78_P_G1\","
-            "\"C_75_P_G#1\",\"C_76_P_A1\",\"C_77_P_A#1\",\"C_78_P_B1\","
-            "\"D_75_P_C2\",\"D_76_P_C#2\",\"D_77_P_D2\",\"D_78_P_D#2\","
-            "\"G_AT\",\"G_FX1_12\",\"G_FX2_13\",\"G_SUST_64\",\"G_PORT_65\",\"G_SSTN_66\",\"G_SOFT_67\",\"G_HOLD_69\","
-            "\"ET_41\",\"ET_42\",\"ET_43\",\"ET_44\",\"ET_45\",\"ET_46\",\"ET_47\",\"ET_48\",\"ET_49\",\"ET_50\","
-            "\"ET_51\",\"ET_52\",\"ET_53\",\"ET_54\",\"ET_55\",\"ET_56\",\"ET_57\",\"ET_58\",\"ET_59\",\"ET_60\""
-            "],"
-            "\"cv\":["
-            "\"A_NOTE\",\"A_VELO\",\"A_P_BANK\",\"A_P_SBNK\",\"A_P_PRG\",\"A_P_PB\",\"A_P_PB_LG\",\"A_P_AT\",\"A_P_MW_1\",\"A_P_BC_2\","
-            "\"B_NOTE\",\"B_VELO\",\"B_P_BANK\",\"B_P_SBNK\",\"B_P_PRG\",\"B_P_PB\",\"B_P_PB_LG\",\"B_P_AT\",\"B_P_MW_1\",\"B_P_BC_2\","
-            "\"C_NOTE\",\"C_VELO\",\"C_P_BANK\",\"C_P_SBNK\",\"C_P_PRG\",\"C_P_PB\",\"C_P_PB_LG\",\"C_P_AT\",\"C_P_MW_1\",\"C_P_BC_2\","
-            "\"D_NOTE\",\"D_VELO\",\"D_P_BANK\",\"D_P_SBNK\",\"D_P_PRG\",\"D_P_PB\",\"D_P_PB_LG\",\"D_P_AT\",\"D_P_MW_1\",\"D_P_BC_2\","
-            "\"A_P_RES_71\",\"A_P_REL_72\",\"A_P_ATK_73\",\"A_P_CUT_74\","
-            "\"B_P_RES_71\",\"B_P_REL_72\",\"B_P_ATK_73\",\"B_P_CUT_74\","
-            "\"C_P_RES_71\",\"C_P_REL_72\",\"C_P_ATK_73\",\"C_P_CUT_74\","
-            "\"D_P_RES_71\",\"D_P_REL_72\",\"D_P_ATK_73\",\"D_P_CUT_74\","
-            "\"G_PB\",\"G_PB_LG\",\"G_AT\",\"G_MW_1\",\"G_BC_2\",\"G_FOOT_4\",\"G_DAT_6\",\"G_VOL_7\",\"G_BAL_8\",\"G_PAN_10\","
-            "\"G_XPR_11\",\"G_FX1_12\",\"G_FX2_13\",\"G_SUST_64\",\"G_PORT_65\",\"G_SOST_66\",\"G_SOFT_67\",\"G_HOLD_69\""
-            "]}"
-        );
-        response->write(s, header);
+        response->write(kIOCapsJSON, header);
     };
 
     // Configuration endpoints
@@ -494,8 +494,9 @@ void WebServer::Start() {
             for (auto &f: request->parse_query_string()) if (f.first == "action") action = f.second;
             SimpleWeb::CaseInsensitiveMultimap jh; jh.emplace("Content-Type", "application/json");
             if (action == "getIOCaps") {
-                // minimal — the sim doesn't drive the modulation matrix; enough to come "online"
-                response->write(string("{\"HWV\":\"simulator\",\"FWV\":\"v0.9.5-sim\",\"p\":\"dada\",\"t\":[],\"cv\":[]}"), jh);
+                // Same payload as /api/v1/getIOCaps — the WebUI's per-parameter
+                // CV/TRIG routing dropdowns are populated from this list.
+                response->write(kIOCapsJSON, jh);
             } else if (action == "getAppInfo") {
                 // mirrors the firmware's DeviceAPI getAppInfo for the no-RP2350 case, plus
                 // is_simulator:true so the WebUI can surface sim-only affordances (the /ctrl
