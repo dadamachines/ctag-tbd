@@ -485,11 +485,6 @@
           "cv": -1
         },
         {
-          "id": "ch1_ab_trigger",
-          "current": 0,
-          "trig": -1
-        },
-        {
           "id": "ch1_ab_accent",
           "current": 2800,
           "cv": -1
@@ -518,11 +513,6 @@
           "id": "ch1_ab_s_fm",
           "current": 35,
           "cv": -1
-        },
-        {
-          "id": "ch1_db_trigger",
-          "current": 0,
-          "trig": -1
         },
         {
           "id": "ch1_db_accent",
@@ -653,26 +643,6 @@
           "id": "ch1_smp_tsamount",
           "current": 2047,
           "cv": -1
-        },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        {
-          "id": "ch2_fmb1_trigger",
-          "current": 0,
-          "trig": -1
         },
         {
           "id": "ch2_fmb1_use_ratio_mode",
@@ -819,27 +789,6 @@
           "current": 2047,
           "cv": -1
         },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        {
-          "id": "ch3_as_trigger",
-          "current": 0,
-          "trig": -1
-        },
         {
           "id": "ch3_as_accent",
           "current": 1772,
@@ -864,11 +813,6 @@
           "id": "ch3_as_a_spy",
           "current": 691,
           "cv": -1
-        },
-        {
-          "id": "ch3_ds_trigger",
-          "current": 0,
-          "trig": -1
         },
         {
           "id": "ch3_ds_accent",
@@ -990,28 +934,6 @@
           "current": 2047,
           "cv": -1
         },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        {
-          "id": "ch4_hh1_trigger",
-          "current": 0,
-          "trig": -1
-        },
         {
           "id": "ch4_hh1_accent",
           "current": 2047,
@@ -1036,11 +958,6 @@
           "id": "ch4_hh1_noise",
           "current": 752,
           "cv": -1
-        },
-        {
-          "id": "ch4_hh2_trigger",
-          "current": 0,
-          "trig": -1
         },
         {
           "id": "ch4_hh2_accent",
@@ -1162,30 +1079,6 @@
           "current": 2047,
           "cv": -1
         },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        {
-          "id": "ch5_rs_trigger",
-          "current": 0,
-          "trig": -1
-        },
         {
           "id": "ch5_rs_accent",
           "current": 2068,
@@ -1305,34 +1198,6 @@
           "id": "ch5_smp_tsamount",
           "current": 2047,
           "cv": -1
-        },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        {
-          "id": "ch6_cl_trigger",
-          "current": 0,
-          "trig": -1
         },
         {
           "id": "ch6_cl_f0",
@@ -1454,28 +1319,6 @@
           "current": 2047,
           "cv": -1
         },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         {
           "id": "ch7_smp_gate",
           "current": 0,
@@ -1856,18 +1699,6 @@
           "current": 2047,
           "cv": -1
         },
-
-
-
-
-
-
-
-        {
-          "id": "ch9_tbd03_trigger",
-          "current": 0,
-          "trig": -1
-        },
         {
           "id": "ch9_tbd03_sync_trig",
           "current": 0,
@@ -2082,23 +1913,6 @@
           "id": "ch9_smp_tsamount",
           "current": 2047,
           "cv": -1
-        },
-
-
-
-
-
-
-
-
-
-
-
-
-        {
-          "id": "ch10_tbd03_trigger",
-          "current": 0,
-          "trig": -1
         },
         {
           "id": "ch10_tbd03_sync_trig",
@@ -2315,16 +2129,6 @@
           "current": 2047,
           "cv": -1
         },
-
-
-
-
-
-
-
-
-
-
         {
           "id": "ch15_pp_gain",
           "current": 1500,
@@ -2432,11 +2236,6 @@
           "id": "ch15_pp_fx2",
           "current": 0,
           "cv": -1
-        },
-        {
-          "id": "ch15_pp_enableEG",
-          "current": 0,
-          "trig": -1
         },
         {
           "id": "ch15_pp_latchEG",
@@ -2562,17 +2361,6 @@
           "current": 2047,
           "cv": -1
         },
-
-
-
-
-
-
-
-
-
-
-
         {
           "id": "ch11_mo_shape",
           "current": 0,
@@ -2627,11 +2415,6 @@
           "id": "ch11_mo_p1_amt",
           "current": 0,
           "cv": -1
-        },
-        {
-          "id": "ch11_mo_enableEG",
-          "current": 0,
-          "trig": -1
         },
         {
           "id": "ch11_mo_loopEG",
@@ -2743,17 +2526,6 @@
           "current": 2047,
           "cv": -1
         },
-
-
-
-
-
-
-
-
-
-
-
         {
           "id": "ch12_wtosc_gain",
           "current": 2047,
@@ -2934,11 +2706,6 @@
           "cv": -1
         },
         {
-          "id": "ch12_mo_enableEG",
-          "current": 0,
-          "trig": -1
-        },
-        {
           "id": "ch12_mo_loopEG",
           "current": 0,
           "trig": -1
@@ -3048,30 +2815,6 @@
           "current": 2047,
           "cv": -1
         },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         {
           "id": "fx1_time_ms",
           "current": 464,
