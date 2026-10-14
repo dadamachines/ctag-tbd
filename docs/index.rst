@@ -292,5 +292,6 @@ dada tbd/docs
     flash/index
     hardware/index
     uxguidelines
+    ux-hardware-patterns
     about/index
     faq
