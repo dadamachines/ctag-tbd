@@ -113,7 +113,7 @@ physical representation of it.
 Akai MPC 3000 and Push 3 use confirmation prompts for destructive
 actions (like deleting a sample or clearing a sequence) and rely on
 non-destructive data handling. Elektron Octatrack & Digitakt II allow
-"dangerous" commands (like clearing patterns or wiping RAM pools), but
+dangerous commands (like clearing patterns or wiping RAM pools), but
 their deep menu hierarchies often require specific multi-key
 choreography, which can prevent accidental triggers. The Pērkons, while
 in general very much a WYSIWYG device, has several pitfalls that can
