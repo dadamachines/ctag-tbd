@@ -255,32 +255,16 @@ exemplified by the screenless philosophy of the Pērkons and the
 non-visual kinesthetic feedback of MPE pads on the Push 3 — promotes a
 tactile-auditory loop that mitigates this effect.
 
-Instrumentality: From "User" to "Agent"
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Modern frameworks challenge the HCI legacy of seeing musicians as
-"users," proposing instead that they are agents in a musical ecology.
-
-**Causality and Liveness:** A core challenge for digital musical
-instruments (DMIs) is maintaining Causality — the perceived link between
-gesture and sound. If the connection is opaque, as in some laptop
-performances, the audience's perception of Liveness is diminished or not
-really there.
-
-**Appropriation:** Musicians often repurpose tools in ways unintended by
-designers. The Octatrack and Digitakt II excel here, acting as
-"Serendipity Engines" that invite subversion of traditional engineering
-rules.
 
 Haptic Reciprocity and Sensory Feedback
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Digital interfaces are often "one-way streets" for energy. Acoustic
+Digital interfaces are often one-way streets in terms of feedback Acoustic
 instruments pass vibrations back to the performer. Reciprocal Tactility
 — the use of vibrotactile micro-interactions — is essential for
 restoring this bio-feedback loop. Research indicates that while haptics
 may not improve pitch accuracy, they significantly enhance user
-satisfaction and the "feel" of the instrument.
+satisfaction and the feel of the instrument.
 
 Conclusion
 ~~~~~~~~~~
