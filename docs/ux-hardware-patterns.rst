@@ -226,22 +226,6 @@ The MPC 3000 and TR-808 carry massive cultural references, connecting
 users to the legacy of electronic music pioneers. The Push 3 defines a
 Professional/Standard identity for the modern portable studio.
 
-Playful Experiences (PLEX) and Player Archetypes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The `PLEX framework <https://www.researchgate.net/publication/287164845_Understanding_playfulness_An_overview_of_the_revised_playful_experience_PLEX_framework>`__
-identifies 22 playful states, allowing us to categorize these
-instruments into Player Archetypes.
-
-+---------------+---------------------------+----------------------------------------------------------------------------+
-| Archetype     | Associated Instruments    | Primary PLEX Experiences                                                   |
-+===============+===========================+============================================================================+
-| The Jammer    | TR-808 / Pērkons HD-01    | Sensation & Relaxation: Meditative loops and visceral physical feedback.   |
-+---------------+---------------------------+----------------------------------------------------------------------------+
-| The Performer | MPC 3000 / Ableton Push 3 | Expression & Fellowship: Rhythmic self-expression and cultural connection. |
-+---------------+---------------------------+----------------------------------------------------------------------------+
-| The Hacker    | Octatrack / Digitakt II   | Challenge & Discovery: Complex puzzles and happy accidents.                |
-+---------------+---------------------------+----------------------------------------------------------------------------+
 
 Sensory Dominance and the Colavita Effect
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -251,26 +235,10 @@ Dominance. The `Colavita Effect <https://www.ncbi.nlm.nih.gov/books/NBK92851/>`_
 dictates that humans prioritize visual stimuli over auditory input. High
 visual load (screens/waveforms) shifts the user from an expressive state
 (listening) to an analytical state (operating). Some hardware —
-exemplified by the screenless philosophy of the Pērkons and the
+exemplified by the screenless philosophy of the Perkons and the
 non-visual kinesthetic feedback of MPE pads on the Push 3 — promotes a
 tactile-auditory loop that mitigates this effect.
 
-Instrumentality: From "User" to "Agent"
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Modern frameworks challenge the HCI legacy of seeing musicians as
-"users," proposing instead that they are agents in a musical ecology.
-
-**Causality and Liveness:** A core challenge for digital musical
-instruments (DMIs) is maintaining Causality — the perceived link between
-gesture and sound. If the connection is opaque, as in some laptop
-performances, the audience's perception of Liveness is diminished or not
-really there.
-
-**Appropriation:** Musicians often repurpose tools in ways unintended by
-designers. The Octatrack and Digitakt II excel here, acting as
-"Serendipity Engines" that invite subversion of traditional engineering
-rules.
 
 Haptic Reciprocity and Sensory Feedback
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
