@@ -68,8 +68,8 @@ really provide a system overview.
 
 **2. Match Between the System and the Real World**
 
-This is a bit of a fuzzy one since it very much depends on the “real
-world” of the users: when it comes to building instruments and effects,
+This is a bit of a fuzzy one since it very much depends on the real
+world of the users: when it comes to building instruments and effects,
 it boils down to “don’t re-invent the wheel” by giving familiar concepts
 new names instead of established ones or using new icons instead of the
 ones everybody knows already. Both the TR-808 and the MPC 3000 have an
@@ -127,7 +127,7 @@ The Roland TR-808 is probably the poster child here for directly
 readable information on the surface without the need to memorize a lot,
 directly followed by the Pērkons. Push 3, MPC 3000 and Digitakt II use
 screens and dynamic labelling to show which parameters are currently
-controlled. While this is “readable,” memory load is higher since the
+controlled. While this is readable, memory load is higher since the
 user needs to know the menu structure. On the other end of the spectrum,
 the Octatrack is notorious for high recall demand and requires the use
 of the manual or cheat sheets in order to make it work for beginners.
