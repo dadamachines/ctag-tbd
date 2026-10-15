@@ -59,7 +59,7 @@ you get an idea.
 **1. Visibility of System Status**
 
 The TR-808 and the Pērkons achieve near-perfection through near 100%
-"What You See Is What You Get" (WYSIWYG) physical states. The
+What You See Is What You Get (WYSIWYG) physical states. The
 Digitakt II provides some limited overview of the system status, while
 Octatrack and MPC 3000 are pretty opaque in that regard. The Push 3 is
 an interesting mixed bag: while it utilizes a large OLED screen to
@@ -199,8 +199,8 @@ proportional jump in Frustration in modern machines.
 
 The Octatrack scores poorly on standard usability but remains a
 professional favorite because its vast utility justifies the struggle.
-On the other side, the TR-808 and Pērkons prioritize "Process
-Gratification" through frictionless, immediate interaction.
+On the other side, the TR-808 and Perkons prioritize Process
+Gratification through frictionless, immediate interaction.
 
 Hedonic Qualities and the AttrakDiff Profile
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -211,7 +211,7 @@ Identity and Stimulation.
 
 **Pragmatic Quality (PQ)**
 
-The TR-808 and (with some small exceptions) also the Pērkons win on
+The TR-808 and (with some small exceptions) also the Perkons win on
 pragmatics by being the most direct machines — they do pretty much
 exactly what they look like.
 
@@ -236,7 +236,7 @@ instruments into Player Archetypes.
 +---------------+---------------------------+----------------------------------------------------------------------------+
 | Archetype     | Associated Instruments    | Primary PLEX Experiences                                                   |
 +===============+===========================+============================================================================+
-| The Jammer    | TR-808 / Pērkons HD-01    | Sensation & Relaxation: Meditative loops and visceral physical feedback.   |
+| The Jammer    | TR-808 / Perkons HD-01    | Sensation & Relaxation: Meditative loops and visceral physical feedback.   |
 +---------------+---------------------------+----------------------------------------------------------------------------+
 | The Performer | MPC 3000 / Ableton Push 3 | Expression & Fellowship: Rhythmic self-expression and cultural connection. |
 +---------------+---------------------------+----------------------------------------------------------------------------+
@@ -275,3 +275,5 @@ of thought when it comes to instrument UX as well as different
 preferences of different user groups. In our experience, it helps to
 think about where you position yourself and what kind of instrument or
 effect you want to build.
+
+Funded by NLnet
