@@ -10,7 +10,7 @@ Prerequisites
 1. ESP-IDF Framework
 --------------------
 
-The project requires **ESP-IDF v5.5.1** or newer.
+The project builds with **ESP-IDF v5.5.3** (the version the repository's CI uses).
 
 **Installation** — clone the ESP-IDF, check out the right tag, fetch submodules,
 then run the toolchain installer:
@@ -21,7 +21,7 @@ then run the toolchain installer:
     cd ~/esp
     git clone --recursive https://github.com/espressif/esp-idf.git
     cd esp-idf
-    git checkout v5.5.1
+    git checkout v5.5.3
     git submodule update --init --recursive
 
 .. code-block:: bash
@@ -73,22 +73,33 @@ To build the firmware:
 
     idf.py build
 
-The build output will be located in ``build/ctag-tbd.bin``.
+The firmware image is ``build/dada-tbd.bin``; the build also writes the
+bootloader, the partition table, the OTA data and ``build/dada-tbd-sd.zip`` (the
+SD card archive).
 
 Flashing
 ========
 
-To flash the firmware to the device:
+Connect the TBD-16's **front JTAG port** (USB-C #3) to your computer, keep
+**back port #1** connected for power, and run from the repository root:
 
 .. code-block:: bash
 
-    idf.py flash
+    ./bin/flash.sh                    # finds /dev/cu.usbmodem* on macOS
+    ./bin/flash.sh /dev/ttyACM0       # or name the port (Linux)
 
-To flash and monitor the serial output:
+``bin/flash.sh`` writes the bootloader, the partition table, the OTA data and
+``build/dada-tbd.bin`` with esptool. Do **not** use ``idf.py flash``: it writes
+OTA data that can make the unit restart in a loop.
+
+To watch the serial output:
 
 .. code-block:: bash
 
-    idf.py flash monitor
+    idf.py -p <PORT> monitor
+
+See :doc:`Flash your build </get_started/flash>` for the SD card and the way back
+to the released firmware.
 
 Troubleshooting
 ===============
@@ -101,7 +112,7 @@ Simulator
 =========
 
 The TBD Simulator runs the full DSP engine on your host machine --- no hardware required.
-See the dedicated :doc:`Simulator Guide <simulator>` for build instructions, usage, and
+See the dedicated :doc:`Simulator Guide </get_started/simulator>` for build instructions, usage, and
 multi-platform setup.
 
 

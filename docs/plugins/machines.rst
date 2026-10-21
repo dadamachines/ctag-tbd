@@ -236,7 +236,7 @@ Reading order:
 
    **Machines build on top of the** :doc:`Plugins </plugins/index>` **section's
    knowledge.** If you haven't yet, read at least :doc:`Quickstart <quickstart>`,
-   :doc:`Desktop Simulator <simulator>` and :doc:`Plugin Architecture <architecture>`
+   :doc:`Desktop Simulator </get_started/simulator>` and :doc:`Plugin Architecture <architecture>`
    first — the simulator, the parameter system, the build workflow are all the same
    between Plugins and Machines. The two Machine pages above stay readable solo,
    but they assume you can run the simulator and know what a ``ctagSoundProcessor`` is.

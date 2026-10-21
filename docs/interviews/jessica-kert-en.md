@@ -82,4 +82,3 @@ All kinds of effects, from granular to delay and reverb, like the Big Sky boxes.
 *Interview: [Benjamin Weiss (MID)](https://instrument-design.com/)*  
 *Funded by [NLnet](https://nlnet.nl/project/TBD-DSP-Toolkit/)*  
 
-[]([]())

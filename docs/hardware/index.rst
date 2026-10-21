@@ -3,26 +3,13 @@ Hardware
 
 .. raw:: html
 
-   <img src="../_static/assets/dadamachines-tbd-16_mockup_002.jpg" alt="dadamachines TBD-16" style="max-width: 100%; width: 100%; border-radius: 6px;">
+   <img src="../_static/assets/dadamachines-tbd-16_tilt.jpg" alt="The dadamachines TBD-16 seen from the front: four encoders under the OLED display, 32 buttons with LEDs, and SD card, headphone, USB-C and USB host ports on the front edge." style="max-width: 100%; width: 100%; border-radius: 6px;">
 
-The **TBD-16** is a compact desktop audio DSP instrument powered by an
-`ESP32-P4 <https://www.espressif.com/en/products/socs/esp32-p4>`_ (400 MHz dual RISC-V)
-and an `RP2350B <https://www.raspberrypi.com/products/rp2350/>`_ (150 MHz dual Cortex-M33).
-Plug in power and start making music --- no computer or Eurorack case required.
+The **TBD-16** is a compact 16-track groovebox from dadamachines, built on the
+open TBD audio platform. Plug in power and start making music --- no computer
+or Eurorack case required.
 
-.. list-table::
-   :widths: 30 70
-
-   * - **Audio**
-     - 44.1 kHz · 32-bit float · stereo in/out · headphone out
-   * - **MIDI**
-     - 4× TRS (Type-A) · USB MIDI · USB Host MIDI · Ableton Link
-   * - **Interface**
-     - 30 buttons · 4 endless pots · 2.4" OLED · 19 RGB LEDs
-   * - **Plugins**
-     - 50+ synths, effects, drum machines
-
-:doc:`Full TBD-16 specs and connectivity → <10_tbd16>`
+:doc:`TBD-16 overview → <10_tbd16>`
 
 .. raw:: html
 
@@ -36,10 +23,8 @@ Plug in power and start making music --- no computer or Eurorack case required.
 The TBD Platform
 ----------------
 
-The TBD-16 is the flagship product of the **TBD platform** --- a modular hardware
-architecture built around the same ESP32-P4 DSP engine. Whether you want a ready-made
-instrument, a core board for a custom enclosure, or a fully custom PCB, all tiers
-run the same CTAG TBD audio engine with 50+ plugins, WiFi, MIDI, and Ableton Link.
+The TBD audio engine runs on an ESP32-P4. The TBD-16 is the ready-made
+instrument; the TBD Open Board is an open baseboard for your own project.
 
 .. list-table::
    :header-rows: 1
@@ -51,53 +36,9 @@ run the same CTAG TBD audio engine with 50+ plugins, WiFi, MIDI, and Ableton Lin
    * - :doc:`TBD-16 <10_tbd16>`
      - Complete desktop instrument, ready to play
      - Musicians, developers, anyone who wants to start immediately
-   * - :doc:`TBD-Core <20_tbd_core>`
-     - Core DSP board with all I/O assembled + 30-pin FFC for custom UI
-     - Instrument designers, product developers
-   * - :doc:`Custom Integration <30_custom_integration>`
-     - ESP32-P4 + RP2350B + codec fully integrated on your own PCB
-     - Manufacturers, OEMs, collaborators
-
-
-Which Tier Is Right for You?
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table::
-   :header-rows: 1
-   :widths: 30 23 24 23
-
-   * - Requirement
-     - TBD-16
-     - TBD-Core
-     - Custom Integration
-   * - Ready to use out of the box
-     - **Yes**
-     - ---
-     - ---
-   * - Custom UI / enclosure
-     - ---
-     - **Yes** (via FFC)
-     - **Yes** (full control)
-   * - All I/O jacks on board
-     - **Yes**
-     - **Yes**
-     - You choose
-   * - Custom connector layout
-     - ---
-     - ---
-     - **Yes**
-   * - Custom codec / channels
-     - ---
-     - ---
-     - **Yes**
-   * - Optimized BOM at scale
-     - ---
-     - ---
-     - **Yes**
-   * - Same DSP engine & plugins
-     - **Yes**
-     - **Yes**
-     - **Yes**
+   * - :doc:`TBD Open Board <20_tbd_open_board>`
+     - ESP32-P4 audio baseboard for the TBD firmware, with a GPIO expansion header for your own UI (in design)
+     - Makers, instrument designers, firmware developers
 
 
 Proven Lineage
@@ -116,7 +57,16 @@ The TBD audio engine has been shipping in hardware for years across multiple for
 - **Open-source core** --- Upstream repository:
   `ctag-fh-kiel/ctag-tbd <https://github.com/ctag-fh-kiel/ctag-tbd>`_
 
-See :doc:`Custom Integration <30_custom_integration>` for details on building your own product on this platform.
+Your own hardware
+-----------------
+
+The firmware builds for boards with or without an SD card and an RP2350: two
+Kconfig options, ``TBD_USE_SD_CARD`` and ``TBD_USE_RP2350``, under
+*CTAG TBD Configuration → TBD Hardware Configuration*.
+``HARDWARE_CONFIGURATIONS.md`` in the repository describes the four
+configurations and how to build each. Start from the
+:doc:`TBD Open Board <20_tbd_open_board>`. To build a product with
+dadamachines, `get in touch <https://dadamachines.com/contact/>`_.
 
 .. include:: /_includes/newsletter.rst
 

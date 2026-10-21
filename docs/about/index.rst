@@ -3,7 +3,7 @@ About
 
 **dada tbd** is an open-source audio DSP platform for musicians, educators, and
 audio developers. It runs 50+ synthesizers and effects on dedicated hardware with
-a full hardware interface (buttons, encoders, OLED display, RGB LEDs). Just
+a full hardware interface (buttons, encoders, OLED display). Just
 plug in power and start making music, no computer required. A WiFi-based web
 interface is available for configuration and preset management.
 
@@ -24,7 +24,7 @@ This repository is a fork of
 (branch ``p4_main``), adapted for the TBD-16 hardware. Our focus:
 
 - **Desktop Hardware** -- Standalone form factor with hardware UI and standard MIDI, no Eurorack or computer required
-- **Hardware Products** -- TBD-16 instrument, TBD-Core with FFC connector, custom integrations
+- **Hardware Products** -- TBD-16 instrument, the TBD Open Board, custom integrations
 - **UI/UX** -- Redesigned web interface with musician-friendly interaction patterns
 - **Documentation** -- Clear guides, example workflows, and UX guidelines for
   plugin developers

@@ -12,8 +12,8 @@ dada tbd/docs
 
    <!-- ========== HERO ========== -->
    <div class="dada-hero">
-     <img src="_static/assets/dadamachines-tbd-16_mockup_002.jpg"
-          alt="dadamachines TBD-16" />
+     <img src="_static/assets/dadamachines-tbd-16_tilt.jpg"
+          alt="The dadamachines TBD-16 seen from the front: four encoders under the OLED display, 32 buttons with LEDs, and SD card, headphone, USB-C and USB host ports on the front edge." />
 
      <p class="dada-hero-headline">
        The open audio platform<br>for musicians and developers.
@@ -22,9 +22,9 @@ dada tbd/docs
        The <strong>dadamachines TBD-16</strong> is a standalone desktop
        instrument built on
        <a href="https://github.com/ctag-fh-kiel/ctag-tbd">CTAG&nbsp;TBD</a>,
-       an open-source audio DSP engine. It combines 50+ synthesizers and
-       effects with standard MIDI, a browser-based UI, and Ableton Link.
-       Plug in power and start making music &mdash; no computer required.
+       an open-source audio DSP engine: a 16-track rack of machines, 50+
+       synthesizers and effects, standard MIDI, a browser-based UI and
+       Ableton Link, with a desktop simulator for developers.
      </p>
    </div>
 
@@ -49,16 +49,16 @@ dada tbd/docs
          <div class="dada-feature-icon">
            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
          </div>
-         <h4>Ready to Play</h4>
-         <p>Ships as a complete instrument. Plug in USB-C power, connect
-         speakers, and you're making music in seconds.</p>
+         <h4>Try It Without Hardware</h4>
+         <p>The desktop simulator serves the same WebUI, so you can build and
+         play machines and plugins before you flash anything.</p>
        </div>
        <div class="dada-feature">
          <div class="dada-feature-icon">
            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
          </div>
          <h4>Open-Source Software</h4>
-         <p>The DSP engine, sound processors, macro/preset &amp; rack layer,
+         <p>The DSP engine, sound processors, rack layer,
          tools and simulator are
          <a href="https://www.gnu.org/licenses/gpl-3.0.txt">GPL&nbsp;3.0</a> —
          full source access; study, modify, contribute. (The WebUI is a
@@ -77,7 +77,7 @@ dada tbd/docs
            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 01-9 9"/></svg>
          </div>
          <h4>Built on CTAG TBD</h4>
-         <p>The audio engine and 50+ plugins come from the
+         <p>The audio engine and the CTAG plugins come from the
          <a href="https://github.com/ctag-fh-kiel/ctag-tbd">CTAG&nbsp;TBD</a>
          project by Robert Manzke.</p>
        </div>
@@ -92,59 +92,37 @@ dada tbd/docs
        Multicore architecture. Three processors, one open platform.
      </h2>
      <p class="dada-section-body">
-       The TBD-16 runs three purpose-built processors in parallel: the
-       <strong>ESP32-P4</strong> (dual-core RISC-V) handles real-time
-       audio DSP, the <strong>RP2350</strong> (dual-core ARM/RISC-V)
-       drives the hardware UI, MIDI, and sequencing, and the
-       <strong>ESP32-C6</strong> manages WiFi &amp; Ableton Link.
-       Each layer is independently programmable &mdash; change one
-       without touching the others.
+       The TBD-16 runs three processors in parallel: the
+       <strong>ESP32-P4</strong> (dual-core RISC-V) runs the audio engine,
+       the rack and the plugins, the <strong>RP2350</strong> drives the
+       panel, MIDI and sequencing, and the <strong>ESP32-C6</strong> manages
+       WiFi &amp; Ableton Link. The same plugin code also builds for a
+       desktop simulator.
      </p>
 
      <div class="dada-steps">
        <div class="dada-step">
+         <h4>Machines</h4>
+         <p>Drums and synth voices for the 16-track rack, scaffolded from a
+         small JSON descriptor.</p>
+       </div>
+       <div class="dada-step">
+         <h4>CTAG Plugins</h4>
+         <p>Standalone sound processors in C++, tested in the desktop
+         simulator before flashing.</p>
+       </div>
+       <div class="dada-step">
          <h4>Controller Apps</h4>
-         <p>Build MIDI controllers, sequencers, or control surfaces on
-         the RP2350 using Arduino &amp; PlatformIO.</p>
-       </div>
-       <div class="dada-step">
-         <h4>DSP Plugins</h4>
-         <p>Write audio code in C++ that runs on the ESP32-P4. Test in
-         the desktop simulator before flashing to hardware.</p>
-       </div>
-       <div class="dada-step">
-         <h4>Web UI</h4>
-         <p>Built-in WiFi serves a web interface for preset management,
-         plugin configuration, and firmware updates.</p>
+         <p>MIDI controllers, sequencers or control surfaces on the RP2350,
+         with Arduino &amp; PlatformIO.</p>
        </div>
        <div class="dada-step">
          <h4>Ableton Link</h4>
-         <p>Wireless tempo sync with Ableton Live, iOS apps, and any
-         Link-enabled device on the same network.</p>
+         <p>Tempo sync with Ableton Live, iOS apps, and any Link-enabled
+         device on the same network.</p>
        </div>
      </div>
    </div>
-
-   <!-- Key specs strip -->
-   <div class="dada-specs">
-     <div class="dada-spec">
-       <div class="dada-spec-value">50+</div>
-       <div class="dada-spec-label">DSP Plugins</div>
-     </div>
-     <div class="dada-spec">
-       <div class="dada-spec-value">3</div>
-       <div class="dada-spec-label">Processors</div>
-     </div>
-     <div class="dada-spec">
-       <div class="dada-spec-value">32-bit</div>
-       <div class="dada-spec-label">Audio Processing</div>
-     </div>
-     <div class="dada-spec">
-       <div class="dada-spec-value">&lt;1ms</div>
-       <div class="dada-spec-label">Latency</div>
-     </div>
-   </div>
-
 
    <!-- ========== WHAT ========== -->
    <div class="dada-section">
@@ -163,14 +141,12 @@ dada tbd/docs
          <div class="dada-card-icon">
            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
          </div>
-         <h3>Make Music</h3>
-         <p>Your TBD-16 ships ready to use. Switch apps, tweak
-         50+ DSP plugins from your browser, sync with Ableton Link.</p>
+         <h3>Play a TBD-16</h3>
+         <p>The user manual for the instrument lives on
+         docs.dadamachines.com.</p>
          <ul>
-           <li><a href="get_started/10_using_your_tbd.html">Using Your TBD-16</a></li>
-           <li><a href="apps/index.html">Browse Apps</a></li>
-           <li><a href="plugins/index.html">Browse Plugins</a></li>
-           <li><a href="get_started/15_wifi_and_link.html">WiFi &amp; Ableton Link</a></li>
+           <li><a href="https://docs.dadamachines.com/tbd-16/">TBD-16 user manual</a></li>
+           <li><a href="hardware/10_tbd16.html">TBD-16 at a glance</a></li>
          </ul>
        </div>
 
@@ -178,15 +154,14 @@ dada tbd/docs
          <div class="dada-card-icon">
            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
          </div>
-         <h3>Build Controller Apps</h3>
-         <p>Create custom MIDI controllers, sequencers, or control
-         surfaces on the RP2350 — Arduino &amp; PlatformIO. No audio
-         programming required.</p>
+         <h3>Get Started</h3>
+         <p>What is in this repository, the three paths, and the simulator
+         first: no hardware needed.</p>
          <ul>
-           <li><a href="apps/getting-started.html">Development Setup</a></li>
-           <li><a href="apps/rp2350.html">App Architecture</a></li>
-           <li><a href="apps/bootloader.html">Bootloader &amp; Multi-App</a></li>
-           <li><a href="apps/debugging.html">Debugging</a></li>
+           <li><a href="get_started/index.html">Get Started</a></li>
+           <li><a href="get_started/setup.html">Development setup</a></li>
+           <li><a href="get_started/simulator.html">Desktop simulator</a></li>
+           <li><a href="get_started/flash.html">Flash your build</a></li>
          </ul>
        </div>
 
@@ -194,16 +169,13 @@ dada tbd/docs
          <div class="dada-card-icon">
            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
          </div>
-         <h3>Write DSP Plugins</h3>
-         <p>Write audio code in C++ for the ESP32-P4. If you already
-         ship VST, AU, or LV2 plugins, the workflow is familiar &mdash;
-         start in the desktop simulator, no hardware needed, then flash
-         to the device.</p>
+         <h3>Write Sound and Apps</h3>
+         <p>Write a machine for the rack, a CTAG plugin, or an app on the
+         RP2350. The sound guides start in the simulator.</p>
          <ul>
-           <li><a href="plugins/simulator.html">Desktop Simulator</a></li>
-           <li><a href="plugins/architecture.html">Plugin Architecture</a></li>
-           <li><a href="plugins/step-by-step.html">Creating a Plugin</a></li>
-           <li><a href="plugins/getting-started.html">Development Setup</a></li>
+           <li><a href="plugins/rack-tutorial.html">Write a machine</a></li>
+           <li><a href="plugins/step-by-step.html">Write a CTAG plugin</a></li>
+           <li><a href="apps/getting-started.html">Write an RP2350 app</a></li>
          </ul>
        </div>
 
@@ -211,15 +183,12 @@ dada tbd/docs
          <div class="dada-card-icon">
            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
          </div>
-         <h3>Hardware &amp; Platform</h3>
-         <p>The TBD-16 Devkit ships with 50+ plugins and full multi-app
-         support. Products built on the platform can run the same broad
-         palette <em>or</em> focus on a single dedicated plugin &mdash;
-         the architecture supports both.</p>
+         <h3>Hardware</h3>
+         <p>The TBD-16, the TBD Open Board, and your own board.</p>
          <ul>
-           <li><a href="hardware/10_tbd16.html">TBD-16 Specs</a></li>
-           <li><a href="hardware/20_tbd_core.html">TBD-Core Module</a></li>
-           <li><a href="hardware/30_custom_integration.html">Custom Integration</a></li>
+           <li><a href="hardware/10_tbd16.html">TBD-16</a></li>
+           <li><a href="hardware/20_tbd_open_board.html">TBD Open Board</a></li>
+           <li><a href="hardware/index.html#your-own-hardware">Your own hardware</a></li>
            <li><a href="flash/index.html">Flash &amp; Updates</a></li>
          </ul>
        </div>
@@ -232,6 +201,11 @@ dada tbd/docs
 
 
 .. raw:: html
+
+   <p class="dada-section-body" style="text-align:center;">
+     Supported by <a href="https://nlnet.nl/project/TBD-DSP-Toolkit/">NLnet</a>
+     through the NGI0 Commons Fund.
+   </p>
 
    <!-- ========== GET INVOLVED ========== -->
    <div class="dada-section">
@@ -253,21 +227,19 @@ dada tbd/docs
        </div>
        <div class="dada-cta">
          <h3>Build an App</h3>
-         <p>Create a MIDI controller, sequencer, or performance app
-         for the RP2350 — Arduino &amp; PlatformIO, no audio code
-         needed.</p>
-         <a href="apps/getting-started.html" class="dada-cta-link">App Dev Guide &rarr;</a>
+         <p>Write a MIDI controller, sequencer or control surface for the
+         RP2350, starting from the app template.</p>
+         <a href="apps/getting-started.html" class="dada-cta-link">App Development Setup &rarr;</a>
        </div>
      </div>
 
      <div class="dada-cta-wide">
        <h3>Build Your Own Hardware Product</h3>
        <p>Already shipping VST, AU, or LV2 plugins? Your C++ DSP code
-       can run on TBD hardware. Use the
-       <a href="hardware/20_tbd_core.html">TBD-Core</a> module or work
-       with dadamachines on a
-       <a href="hardware/30_custom_integration.html">fully custom PCB
-       integration</a>. Your product can focus on a single signature
+       can run on TBD hardware. Build on the
+       <a href="hardware/20_tbd_open_board.html">TBD Open Board</a> or
+       <a href="hardware/index.html#your-own-hardware">your own board</a>
+       with dadamachines. Your product can focus on a single signature
        sound, offer a curated collection, or ship the full multi-plugin
        TBD experience &mdash; same open engine, your hardware, your
        brand.</p>
@@ -281,16 +253,28 @@ dada tbd/docs
 
 .. toctree::
     :hidden:
+    :caption: Develop
+
+    Get Started <get_started/index>
+    Build your own <plugins/build-your-own>
+    Plugins <plugins/index>
+    Machines <plugins/machines>
+    Apps <apps/index>
+    Flash & Updates <flash/index>
+
+.. toctree::
+    :hidden:
+    :caption: Hardware and UX
+
+    Hardware <hardware/index>
+    UX Guidelines <uxguidelines>
+    Hardware UX patterns <ux-hardware-patterns>
+
+.. toctree::
+    :hidden:
+    :caption: About
 
     Blog <blog/index>
     Artist Interviews <interviews/index>
-    get_started/index
-    Build your own <plugins/build-your-own>
-    Apps <apps/index>
-    Plugins <plugins/index>
-    Machines <plugins/machines>
-    flash/index
-    hardware/index
-    uxguidelines
-    about/index
-    faq
+    About <about/index>
+    FAQ <faq>

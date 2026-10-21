@@ -85,4 +85,3 @@ Allerhand Effekte natürlich, von Granular bis Delay und Reverb, so wie die Big-
 *Interview: [Benjamin Weiss (MID)](https://instrument-design.com/)*  
 *Gefördert von [NLnet](https://nlnet.nl/project/TBD-DSP-Toolkit/)*  
 *KI-Nutzung: Sprachmemos von Apple zur Transkription*
-[]([]())

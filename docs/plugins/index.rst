@@ -467,7 +467,7 @@ authoring tutorial. The pages are ordered so you can read them top-to-bottom:
 
 #. :doc:`Quickstart <quickstart>` — clone, build the simulator, hear sound, decide
    *legacy plugin vs Machine* in ~10 minutes.
-#. :doc:`Desktop Simulator <simulator>` — run the full DSP engine on your laptop,
+#. :doc:`Desktop Simulator </get_started/simulator>` — run the full DSP engine on your laptop,
    no hardware needed. WebUI, ``/ctrl`` MIDI / CV / trigger sim, ``--srom`` for
    samplers, plus the headless ``load-test`` / ``routing-test`` / ``rack-lint`` harnesses.
 #. :doc:`Plugin Architecture <architecture>` — the ``ctagSoundProcessor`` factory,
@@ -491,7 +491,6 @@ catalogue and the rack-specific authoring docs that *build on* the foundation he
    :hidden:
 
    Quickstart <quickstart>
-   Desktop Simulator <simulator>
    Plugin Architecture <architecture>
    Development Setup <getting-started>
    Creating a Plugin <step-by-step>

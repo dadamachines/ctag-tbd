@@ -17,7 +17,7 @@ Hello, Machines — your first rack voice
 
    Other references: :doc:`Writing a Machine <rack-plugins>` for the API
    reference (every macro, every helper), :doc:`Machines page <machines>` for the
-   catalogue of every Machine that ships today, :doc:`Desktop Simulator <simulator>`
+   catalogue of every Machine that ships today, :doc:`Desktop Simulator </get_started/simulator>`
    for the simulator's flags and ``/ctrl`` page details.
 
 
@@ -72,7 +72,7 @@ then open ``http://localhost:8080/ctrl`` → *GrooveBoxRack (MIDI)* and play the
 drum pads. You should hear the default kit. Now Ctrl-C the simulator and proceed.
 
 If the build fails or the simulator crashes on launch, see the :doc:`Desktop
-Simulator <simulator>` page — it has per-OS dependency notes, audio-device
+Simulator </get_started/simulator>` page — it has per-OS dependency notes, audio-device
 gotchas, and the most common fixes.
 
 
@@ -343,8 +343,8 @@ Two things to know before you open one:
 
 - **PR target branch is** ``staging`` **on** ``dadamachines/ctag-tbd`` (not
   ``dada-tbd-master``). The ``staging`` branch is the external-contributor
-  intake queue; ``dada-tbd-master`` is a read-only release snapshot that
-  maintainers update from a private working repo. The PR template will
+  intake queue; ``dada-tbd-master`` is the release snapshot that the
+  maintainers update at each release. The PR template will
   remind you to change the base branch if GitHub auto-selected master.
 - **First-time contributors** sign a short CLA via the CLA-assistant bot —
   it comments on your PR with a one-click sign link.
@@ -367,7 +367,7 @@ See also
 - :doc:`Writing a Machine <rack-plugins>` — the reference: every parameter macro,
   the voice-registry helpers, the channel-mixer surface, every trigger / noteOn /
   noteOff contract detail.
-- :doc:`Desktop Simulator <simulator>` — ``-o`` / ``--srom`` flags, the ``/ctrl``
+- :doc:`Desktop Simulator </get_started/simulator>` — ``-o`` / ``--srom`` flags, the ``/ctrl``
   page, per-OS dependency installs, troubleshooting common issues.
 - :doc:`Machines catalogue <machines>` — the 17 Machines that ship today, with
   their internal id, the track they live on, and a link to the user-facing page.

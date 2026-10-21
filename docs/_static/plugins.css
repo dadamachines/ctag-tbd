@@ -171,3 +171,9 @@
     display: none;
   }
 }
+
+/* A phone: the catalogue's columns wrap too, so the table stays inside the page */
+.plugin-table td code { overflow-wrap: anywhere; }
+@media (max-width: 600px) {
+  .plugin-table thead th, .plugin-table td:first-child, .plugin-table td:nth-child(2) { white-space: normal; }
+}

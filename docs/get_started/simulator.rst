@@ -1,6 +1,6 @@
-*********
-Simulator
-*********
+*****************
+Desktop simulator
+*****************
 
 The TBD Simulator runs the full DSP engine on your computer --- no hardware required.
 It uses ~99% the same code as the device firmware, so you can develop, test and debug
@@ -23,13 +23,13 @@ plugin library, developing your own plugins, or teaching DSP.
      - **CV / Triggers / Pots** --- the TBD's hardware modulation inputs (4 CV in,
        2 trigger/gate in, 2 front-panel pots). **The original ctag-tbd plugins are all
        Eurorack-style and respond only to these** --- they have no MIDI input (a MIDI API for
-       them is :doc:`planned <index>`, not yet implemented). You map *which* control drives
+       them is :doc:`planned </plugins/index>`, not yet implemented). You map *which* control drives
        *which* parameter from the main WebUI, exactly like on the hardware module, then drive it
        from here.
      - **GrooveBoxRack (MIDI)** *(default tab)* --- the TBD-16's macro/rack instrument is the
        **one MIDI-driven plugin** (the TBD-16 is a MIDI device, not Eurorack). Drum pads, a
        step sequencer and a piano keyboard, all wired to GrooveBoxRack's tracks. (See
-       :doc:`Writing a Machine <rack-plugins>` if you're building rack voices.)
+       :doc:`Writing a Machine </plugins/rack-plugins>` if you're building rack voices.)
 
    Plugins are *silent until you send them a note / trigger* from ``/ctrl`` --- just like the
    hardware makes no sound until a CV/gate (or, for the TBD-16, a MIDI note) arrives. If you
@@ -177,7 +177,7 @@ Step by step --- start the simulator on a chosen interface
 
    .. code-block:: bash
 
-      cd ~/Documents/GitHub/dadamachines-ctag-tbd-dev/simulator/build
+      cd simulator/build
       ./tbd-sim --list
 
    You'll get lines like::
@@ -216,7 +216,7 @@ One-liner (clone path + chosen device):
 
 .. code-block:: bash
 
-   cd ~/Documents/GitHub/dadamachines-ctag-tbd-dev/simulator/build && ./tbd-sim --device 3
+   cd simulator/build && ./tbd-sim --device 3
 
 (Copy each command on its own line --- don't paste the ``#``-commented examples; see the
 *Running* tip above.)
@@ -228,7 +228,7 @@ Command-Line Options
 .. code-block:: text
 
    -h [ --help ]      Show help message
-   -s [ --srom ]      Sample-ROM file (default: ../../sample_rom/sample-rom.tbd — see note below)
+   -s [ --srom ]      Sample-ROM file (default: ../../tools/sample-tools/sample-rom.tbd — see note below)
    -l [ --list ]      List sound cards
    -d [ --device ]    Sound card device ID (default: 0)
    -o [ --output ]    Output only (no audio input)
@@ -255,8 +255,13 @@ Plugins to Try
 Most plugins fall into three groups; here's what works well in the simulator and what needs
 extra setup:
 
-**Synth plugins --- work out of the box** (load one on channel A, then open ``/ctrl`` and
-hit a trigger / send a note):
+**Synth plugins --- legacy ctag-tbd Eurorack-style plugins**, no MIDI input. Load one on
+channel A; play it either by toggling its trigger / gate bool params (e.g. ``Karpuskl``'s
+``Trigger``) directly in the **main WebUI** — each off→on click acts as a gate edge — or
+by routing those params via the small dropdown next to each parameter and driving them from
+``/ctrl``'s *CV / Triggers / Pots* tab (see *The Control page* below for which dropdown
+entries are actually wired in the simulator). The default ``/ctrl`` tab —
+*GrooveBoxRack (MIDI)* — does **not** drive these plugins.
 
 - ``TBD03`` --- TB-303 emulation
 - ``MacOsc`` / ``MacOscDuo`` --- Mutable Braids oscillator
@@ -276,7 +281,7 @@ the simulator with ``--wav some.wav`` (or a full-duplex device) or you'll just h
 
 **Sample / wavetable plugins.** ``Rompler``, ``WTOsc``, ``WTOscDuo``, ``Freakwaves``,
 ``VctrSnt`` (and ``GrooveBoxRack``'s Rompler tracks CH07/CH08) read from a sample-rom.
-**A sample-rom is bundled in the repo** at ``sample_rom/sample-rom.tbd`` (~4.7 MB — drums,
+**A sample-rom is bundled in the repo** at ``tools/sample-tools/sample-rom.tbd`` (~4.7 MB — drums,
 a4_dub kit, wavetables, etc.) and the simulator's ``--srom`` flag defaults to it, so these
 plugins play out of the box. Pass ``--srom path/to/other.tbd`` to use a different one (e.g.
 one you exported from your TBD-16's WebUI).
@@ -345,16 +350,26 @@ The big intro paragraph at the top of the tab is collapsible (`<details>`) — o
 MIDI-channel ↔ track map, fold it away once you've read it.
 
 If you're building GrooveBoxRack voices ("rack plugins"), see
-:doc:`Writing a Machine <rack-plugins>`.
+:doc:`Writing a Machine </plugins/rack-plugins>`.
 
 **CV / Triggers / Pots** *(legacy plugins — the original ctag-tbd Eurorack-style plugins)* --- the
 TBD's hardware modulation inputs: **2 trigger/gate inputs** (manual gate button or pulse-train),
 **4 CV inputs** and the **2 front-panel pots** (manual slider or an LFO / step generator). Almost
 every ctag-tbd plugin is Eurorack-style and is driven *only* through these. You don't address a
 parameter directly here --- instead, in the **main WebUI** you set the small dropdown next to a
-parameter to ``CV0`` / ``TRIG0`` / ``POT0`` …, and this tab drives that input. (Example:
-``DrumRack`` --- map each drum's ``*_trigger`` parameter to a trigger input, then hit the gate
-buttons.)
+parameter to one of the routing-source entries, and this tab drives that input.
+
+.. note::
+
+   The routing dropdown is labelled with the **dada platform's IOCaps source names**
+   (``A_NOTE``, ``A_VELO``, ``B_NOTE`` … then a long tail). In this simulator only the
+   **first 2 trigger entries and first 4 CV entries** are actually wired: they map to
+   TRIG 0 / TRIG 1 and CV 0–3 on this tab. Routing a parameter to a later entry
+   (``B_NOTE``, ``C_NOTE`` …) reads past the end of the simulator's stimulus arrays
+   and yields no audible signal — pick the first entries to receive signal.
+
+(Example: ``DrumRack`` --- map each drum's ``*_trigger`` parameter to the first trigger
+entry in the dropdown, then hit that gate button on this tab.)
 
 Developing Plugins with the Simulator
 =====================================
@@ -369,8 +384,8 @@ The simulator uses the same plugin code and directory structure as the firmware:
 If you're building a **GrooveBoxRack machine** (a voice for the TBD-16's rack instrument
 rather than a standalone Eurorack-style plugin), the workflow is more streamlined --- one
 scaffolder command + a few headless harnesses. Start with the
-:doc:`Hello, Machines tutorial <rack-tutorial>` for a 15-minute walk-through; the full
-reference is in :doc:`Writing a Machine <rack-plugins>`.
+:doc:`Hello, Machines tutorial </plugins/rack-tutorial>` for a 15-minute walk-through; the full
+reference is in :doc:`Writing a Machine </plugins/rack-plugins>`.
 
 Headless harnesses (alongside the WebUI)
 ----------------------------------------
@@ -425,7 +440,7 @@ audio device at 44100 Hz / 32-bit float. Run ``./tbd-sim --list`` and try anothe
 ``--device``; ``--output`` forces output-only.
 
 **``Trying to open sample rom file ... sample-rom.tbd``** — the sample-rom is bundled at
-``sample_rom/sample-rom.tbd`` and the simulator's ``--srom`` defaults to it, so this is
+``tools/sample-tools/sample-rom.tbd`` and the simulator's ``--srom`` defaults to it, so this is
 just the load message (you should see ``Done loading samples, total size … bytes`` right
 after). If it WARNs that the file is missing, you're probably running the binary from
 somewhere other than ``simulator/build`` — pass ``--srom /full/path/sample-rom.tbd`` to fix.

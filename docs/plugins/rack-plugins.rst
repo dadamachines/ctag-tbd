@@ -42,7 +42,7 @@ a small DSP voice (a drum, a synth, a sampler, …). A machine:
 
 GrooveBoxRack mixes all the active tracks' outputs, runs the bus FX (delay, reverb, master
 compressor) and writes the stereo result. The hardware's RP2350 step-sequencer (and/or USB
-MIDI) feeds it MIDI; in the :doc:`desktop simulator <simulator>` you play it from the
+MIDI) feeds it MIDI; in the :doc:`desktop simulator </get_started/simulator>` you play it from the
 ``/ctrl`` page's *GrooveBoxRack (MIDI)* tab.
 
 
@@ -332,18 +332,17 @@ automatically and prints the snippets for step 4.)
 
 .. note::
 
-   When a refactor touches anything that *might* affect the PICO ↔ P4 contract, read
-   ``docs/CONTRACT-PICO.md`` in the repository root and re-run ``routing-test``. The five
-   public methods of GrooveBoxRack (``setTrackMachine``, ``setTrackBank``,
-   ``handleMidiNoteOn`` / ``Off``, ``handleMidiControlChange``) plus their observable
-   state are what the PICO firmware (``tbd-pico-seq3`` on branch ``dada-tbd-master``)
-   depends on. ``routing-test`` against the golden file is the proof.
+   When a refactor touches anything that *might* affect the PICO ↔ P4 contract, re-run
+   ``routing-test``. The five public methods of GrooveBoxRack (``setTrackMachine``,
+   ``setTrackBank``, ``handleMidiNoteOn`` / ``Off``, ``handleMidiControlChange``) plus their
+   observable state are what the PICO firmware depends on. ``routing-test`` against the
+   golden file is the proof.
 
 
 See also
 ========
 
-- :doc:`Desktop Simulator <simulator>` — how to run, the ``/ctrl`` page, ``--srom`` for samplers.
+- :doc:`Desktop Simulator </get_started/simulator>` — how to run, the ``/ctrl`` page, ``--srom`` for samplers.
 - :doc:`Plugin Architecture <architecture>` — the ``ctagSoundProcessor`` factory, the SP memory
   allocator, the parameter system that GrooveBoxRack and its Machines build on.
 - :doc:`Creating a Plugin <step-by-step>` — for standalone (non-rack) ctag-tbd plugins.

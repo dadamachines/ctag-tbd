@@ -26,7 +26,7 @@ improvements, or UI enhancements.
 2. Create a feature branch.
 3. Submit a pull request with a clear description of your changes.
 
-See :doc:`Plugin Development Setup </plugins/getting-started>` to set up your development environment.
+See :doc:`Development setup </get_started/setup>` to set up your development environment.
 
 
 Stay Updated

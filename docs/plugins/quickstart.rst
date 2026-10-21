@@ -67,7 +67,7 @@ You should hear sound the moment a plugin is loaded and you trigger it from
 **4/4 demo → Play** in the step sequencer and you have a beat. The drum samples
 on tracks CH07/CH08 (Rompler) play from the **sample-rom bundled in the repo**
 (``sample_rom/sample-rom.tbd``, 4.7 MB; the simulator's ``--srom`` defaults to
-it). See :doc:`simulator` for audio-device gotchas, ``--wav`` for effect plugins,
+it). See :doc:`/get_started/simulator` for audio-device gotchas, ``--wav`` for effect plugins,
 and ``--srom`` for a different sample-rom.
 
 **Headless smoke test** — handy in CI and during fast voice-iteration:
@@ -142,7 +142,7 @@ Next steps
   the ``ctagSPAllocator`` static pool, parameter ↔ CV/trig mapping.
 - :doc:`Web API <web-api>` — the REST surface the Web UI talks to (the
   simulator exposes the same one).
-- The :doc:`Desktop Simulator <simulator>` page — `--device` / `--wav` / `--srom`,
+- The :doc:`Desktop Simulator </get_started/simulator>` page — `--device` / `--wav` / `--srom`,
   the ``/ctrl`` control surface, troubleshooting (crackle, blank keyboard, …).
 - For ``GrooveBoxRack`` voices specifically: the headless ``load-test``
   (``simulator/build/load-test GrooveBoxRack``) constructs the rack, fires

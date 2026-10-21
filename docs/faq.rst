@@ -38,23 +38,22 @@ General
 .. dropdown:: What processors / chips are inside?
 
    - **ESP32-P4** -- Main DSP engine and WiFi web server
-   - **RP2350** -- User interface, MIDI, and hardware I/O
+   - **RP2350** -- User interface and MIDI
    - **ESP32-C6** -- WiFi co-processor
-   - **STM32F030R8T6** -- UI board I/O controller (buttons, encoders, on the
-     separate UI board connected via FFC)
 
-   See :doc:`TBD-16 Hardware <hardware/10_tbd16>` for more details.
+   See :doc:`TBD-16 Hardware <hardware/10_tbd16>` and the
+   `product page <https://dadamachines.com/products/tbd-16-groovebox/>`_ for more.
 
 .. dropdown:: Can I use TBD-16 in a commercial product?
 
    Yes. If you want to build a product around the TBD platform, two options
    are designed for you:
 
-   - The :doc:`TBD-Core </hardware/20_tbd_core>` -- our core DSP board with
-     all audio, MIDI, and USB I/O assembled. Connect your own UI board via the
-     30-pin FFC and design your own enclosure.
-   - :doc:`Custom Integration </hardware/30_custom_integration>` -- we
-     integrate the ESP32-P4, RP2350, and codec directly onto your PCB.
+   - The :doc:`TBD Open Board </hardware/20_tbd_open_board>` -- an ESP32-P4
+     audio baseboard for the TBD firmware, in design. Connect your own UI through
+     its GPIO expansion header and design your own enclosure.
+   - Your own board: see :doc:`Your own hardware </hardware/index>`; to build
+     a product with us, `get in touch <https://dadamachines.com/contact/>`_.
 
    We also work with companies on licensed special editions of the TBD-16.
 
@@ -79,19 +78,15 @@ Audio & Sound
 .. dropdown:: What sample rate and bit depth does TBD-16 use?
 
    The firmware ships at **44.1 kHz** sample rate with **32-bit float**
-   internal processing over a **32-bit I2S bus**. The
-   `TLV320AIC3254 <https://www.ti.com/product/en-us/TLV320AIC3254>`_ audio
-   codec supports sample rates from 8 kHz up to 192 kHz and word lengths up
-   to 32 bit --- the firmware can be reconfigured if a different rate is
-   needed. See :doc:`TBD-16 Audio Performance <hardware/10_tbd16>` for full
-   measured specs.
+   internal processing. See the
+   `TBD-16 product page <https://dadamachines.com/products/tbd-16-groovebox/>`_
+   for the current specifications.
 
 .. dropdown:: How many plugins can run simultaneously?
 
-   Two, one per audio channel (Slot 0 and Slot 1). Each channel independently
-   runs a plugin from the library. In **Groovebox** mode, plugins are assigned
-   per track. In **MultiEffect** mode, you select plugins for each slot using
-   the hardware interface or the web interface.
+   In the **Groovebox**, each of the 16 tracks runs its own sound machine, and
+   the FX tracks run effects. The number of plugins that can run at once is
+   limited by the DSP load.
 
 .. dropdown:: Can I process external audio?
 
@@ -102,8 +97,7 @@ Audio & Sound
 
    Ableton Link is a technology for synchronizing tempo across devices on the
    same WiFi network. TBD-16 has built-in Link support, allowing it to sync
-   with Ableton Live, iOS apps, and other Link-enabled tools. See
-   :doc:`Ableton Link <get_started/15_wifi_and_link>` for details.
+   with Ableton Live, iOS apps, and other Link-enabled tools.
 
 
 Connectivity
@@ -111,9 +105,9 @@ Connectivity
 
 .. dropdown:: How do I connect to the web interface?
 
-   Connect the TBD-16 to your WiFi network, then open its IP address in a
-   browser. See :doc:`WiFi & Ableton Link <get_started/15_wifi_and_link>`
-   for setup instructions.
+   Connect the TBD-16 to your computer with a USB-C data cable and open
+   ``http://192.168.4.1``. Wi-Fi is set up in the settings; the
+   `user manual <https://docs.dadamachines.com/tbd-16/>`_ explains it.
 
 .. dropdown:: What MIDI connections are supported?
 
@@ -123,14 +117,15 @@ Connectivity
 
    All connections follow the `TRS Type-A standard <https://minimidi.world/>`_.
    The RP2350 processor handles MIDI and makes it available to the DSP engine.
-   See the `MIDI section <hardware/10_tbd16.html#midi>`_ of the TBD-16 page for details.
+   See the `MIDI section <hardware/10_tbd16.html#connections>`_ of the TBD-16 page for details.
 
-.. dropdown:: Can the TBD-16 run multiple RP2350 firmware images?
+.. dropdown:: Can the TBD-16 run other firmware?
 
-   Yes. All Apps ship pre-installed on the SD card and you switch between
-   them from a boot menu -- no flashing required. See the
-   :doc:`Apps </apps/index>` catalog and
-   :doc:`Bootloader </apps/bootloader>` for technical details.
+   Yes. A firmware you build from this repository can be flashed to the
+   ESP32-P4, see :doc:`Flash your build </get_started/flash>`; the
+   :doc:`Stable Channel </flash/10_stable_channel>` page puts the released
+   firmware back. Custom RP2350 apps are described in
+   :doc:`App Development Setup </apps/getting-started>`.
 
 
 Troubleshooting
@@ -139,21 +134,19 @@ Troubleshooting
 .. dropdown:: I can't connect to the web interface
    :open:
 
-   1. Ensure the TBD-16 is powered on and connected to your WiFi network.
-   2. Check that your computer is on the **same network**.
-   3. Try accessing the device at its IP address directly.
-   4. If the device isn't connecting to WiFi, see
-      :doc:`WiFi & Ableton Link <get_started/15_wifi_and_link>`.
+   1. Ensure the TBD-16 is powered on and connected to your computer with a
+      USB-C data cable, then open ``http://192.168.4.1``.
+   2. If you use WiFi, check that your computer is on the **same network**.
+   3. If the device isn't connecting to WiFi, see the
+      `user manual <https://docs.dadamachines.com/tbd-16/>`_.
 
 .. dropdown:: Firmware flash failed
 
    - Make sure the USB cable supports data (not charge-only).
    - Try a different USB port.
-   - Use the browser-based flasher at
-     :doc:`Flash DSP Firmware </flash/25_flash_dsp>` or
-     :doc:`Flash UI Firmware </flash/30_flash_ui>`.
+   - Use the browser-based flasher, see :doc:`Flash & Updates </flash/index>`.
    - For full device recovery, see
-     :doc:`Device Recovery </flash/50_device_recovery>`.
+     :doc:`Stable channel </flash/10_stable_channel>`.
 
 .. dropdown:: No sound after changing plugins
 
@@ -171,10 +164,10 @@ Development Questions
 If you're developing custom firmware or plugins, the relevant troubleshooting
 is in each development section:
 
-- **DSP / plugin development** -- :doc:`Plugin Development Setup <plugins/getting-started>`
-  (Troubleshooting section) and :doc:`Building & Flashing <plugins/building>`
-- **App / RP2350 development** -- :doc:`App Development Setup <apps/getting-started>`
-  and :doc:`Debugging with SWD <apps/debugging>` (Troubleshooting section)
+- **Building and flashing** -- :doc:`Development setup </get_started/setup>`
+  (Troubleshooting section) and :doc:`Flash your build </get_started/flash>`
+- **The RP2350 side** -- :doc:`App Architecture </apps/rp2350>`
+  and :doc:`Debugging with SWD </apps/debugging>` (Troubleshooting section)
 
 
 Still Stuck?

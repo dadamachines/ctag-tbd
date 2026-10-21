@@ -207,10 +207,9 @@ table.docutils tbody tr:last-child td {
   border-bottom: none;
 }
 
-/* Bold first-column labels (specs pattern) */
+/* Bold first-column labels (specs pattern); they wrap, so a long label never pushes the table past the page */
 table.docutils tbody td:first-child {
   font-weight: 700;
-  white-space: nowrap;
 }
 
 /* Remove Furo's zebra-stripe backgrounds */
@@ -1150,3 +1149,8 @@ footer {
   color: var(--color-foreground-primary, #111);
   margin-top: 0.2em;
 }
+
+/* Tables never push text past the page: a table with set column widths keeps them, and long code in a cell wraps. */
+table.docutils:has(> colgroup) { table-layout: fixed; width: 100%; }
+table.docutils td, table.docutils th { overflow-wrap: anywhere; }
+table.docutils td code, table.docutils th code { white-space: normal; overflow-wrap: anywhere; }

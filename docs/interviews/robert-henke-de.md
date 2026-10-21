@@ -122,4 +122,3 @@ Ich frage mich, ob das zwei MIDI-In und zwei MIDI-Out braucht. Ich finde MIDI ge
 *Interview: [Benjamin Weiss (MID)](https://instrument-design.com/)*  
 *Gefördert von [NLnet](https://nlnet.nl/project/TBD-DSP-Toolkit/)*  
 *KI-Nutzung: Sprachmemos von Apple zur Transkription*
-[]([]())

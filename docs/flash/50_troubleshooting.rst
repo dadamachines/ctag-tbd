@@ -159,8 +159,8 @@ After Flashing
 **Device not reachable at http://192.168.4.1**
 
   - **Remove all USB cables**, wait 3 seconds, then reconnect via **back Port #1** only
-  - Wait **25–30 seconds** for the device to boot and start the WiFi access point
-  - Connect your computer to the ``TBD-16`` WiFi network
+  - Wait **25–30 seconds** for the device to boot
+  - The web interface is reached over that USB cable (USB networking is the default mode). If you switched the device to WiFi in the settings, join its network instead
   - If still not reachable: check that the SD card has the correct files (try Path B)
   - Try a hard refresh in your browser (⌘-Shift-R / Ctrl-Shift-R)
 

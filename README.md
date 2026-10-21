@@ -22,9 +22,9 @@ You can iterate without flashing the device — a **desktop simulator** runs the
 - **[Plugin documentation](https://dadamachines.github.io/ctag-tbd/plugins/)** — API reference, parameter / macro / preset model, GrooveBoxRack machine guide, examples
 - **[`generators/`](generators/readme.md)** — Node.js scaffolding for new plugins (`generator.js`) and new rack machines (`rackgen.js`); one command to drop a working stub in place
 - **[`simulator/`](simulator/readme.md)** — host-side build of the firmware + a browser WebUI; develop and audition plugins without the device
-- **[`CONTRIBUTING.md`](CONTRIBUTING.md)** — branch model, CI / CDN pipeline, PR workflow, CLA
+- **[`CONTRIBUTING.md`](CONTRIBUTING.md)** — building the firmware, PR workflow, CLA
 
-External contributors open PRs against the [`staging`](https://github.com/dadamachines/ctag-tbd/tree/staging) branch (never `dada-tbd-master` — that's a read-only release snapshot updated only by maintainers). CI compile-checks every PR automatically; maintainers review, the CLA-bot prompts for signature on your first PR, and accepted commits are drained into the firmware pipeline. If your PR adds something generally useful for the upstream CTAG TBD engine, we'll happily help open a parallel PR there.
+External contributors open pull requests against the [`staging`](https://github.com/dadamachines/ctag-tbd/tree/staging) branch; `dada-tbd-master` is the release snapshot. CI compile-checks every PR, maintainers review, and the CLA-bot prompts for a signature on your first PR. If your PR adds something generally useful for the upstream CTAG TBD engine, we'll happily help open a parallel PR there.
 
 ## What this fork does
 

@@ -80,9 +80,6 @@ For the end-to-end walk-through with a worked example, see
 For the full reference (parameter macros, registry helpers, channel-mixer surface), see
 [docs/plugins/rack-plugins.rst](../docs/plugins/rack-plugins.rst).
 
-For "what mustn't change without coordinating with the PICO firmware", see
-[docs/CONTRACT-PICO.md](../docs/CONTRACT-PICO.md).
-
 
 ## Scaffold a legacy ctagSoundProcessor — `generator.js`
 

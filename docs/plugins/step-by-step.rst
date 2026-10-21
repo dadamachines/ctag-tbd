@@ -128,12 +128,12 @@ the system discovers your new plugin on the next boot:
 Step 6: Build and Test
 ======================
 
-Build the firmware and flash it:
+Build the firmware and flash it (see :doc:`Flash your build </get_started/flash>`):
 
 .. code-block:: bash
 
    idf.py build
-   idf.py flash monitor
+   ./bin/flash.sh
 
 Or test with the simulator:
 

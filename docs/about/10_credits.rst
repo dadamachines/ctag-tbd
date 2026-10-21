@@ -85,7 +85,7 @@ dual-licence model, like `JUCE <https://juce.com>`_ or `Bela <https://bela.io>`_
 - **For individual developers and contributors:** you can freely use, study,
   modify and contribute to the firmware under GPL 3.0. (Contributions are
   accepted under a Contributor Licence Agreement so the dual-licence is
-  possible — see :doc:`Contributing </plugins/getting-started>` / ``CONTRIBUTING.md``.)
+  possible — see :doc:`Get Started </get_started/index>` / ``CONTRIBUTING.md``.)
 - **For the community:** modifications you distribute stay GPL 3.0, so the
   ecosystem keeps growing.
 - **For commercial protection:** a manufacturer cannot ship a *closed-source*
@@ -168,8 +168,7 @@ Eurorack designs were published.
 
 There is currently no Eurorack module based on the new ESP32-P4 + RP2350
 platform planned by dadamachines, but we would love to partner with anyone
-interested in building one. See
-:doc:`Custom Integration </hardware/30_custom_integration>` or
+interested in building one:
 `contact us <https://dadamachines.com/contact/>`_.
 
 
@@ -186,12 +185,12 @@ TBD code that you distribute.
 **As a company:** If you want to build a product around the TBD platform, two
 options are designed for you:
 
-- The :doc:`TBD-Core </hardware/20_tbd_core>` -- our core DSP board with all
-  audio, MIDI, and USB I/O assembled. Connect your own UI board via the 30-pin
-  FFC and design your own enclosure.
-- :doc:`Custom Integration </hardware/30_custom_integration>` -- we integrate
-  the ESP32-P4, RP2350, and codec directly onto your PCB for full control over
-  form factor, connectors, and BOM.
+- The :doc:`TBD Open Board </hardware/20_tbd_open_board>` -- an ESP32-P4 audio
+  baseboard for the TBD firmware, with a GPIO expansion header for your own UI
+  (in design).
+- Your own board around the TBD firmware: see
+  :doc:`Your own hardware </hardware/index>`; to build it with us,
+  `get in touch <https://dadamachines.com/contact/>`_.
 
 We also work with companies on licensed special editions of the TBD-16.
 `Contact dadamachines <https://dadamachines.com/contact/>`_ to discuss.

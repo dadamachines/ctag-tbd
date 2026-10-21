@@ -4,353 +4,80 @@ TBD-16
 
 .. raw:: html
 
-   <img src="../_static/assets/dadamachines-tbd-16_mockup_002.jpg" alt="dadamachines TBD-16" style="max-width: 100%; width: 100%;">
+   <img src="../_static/assets/dadamachines-tbd-16_tilt.jpg" alt="The dadamachines TBD-16 seen from the front: four encoders under the OLED display, 32 buttons with LEDs, and SD card, headphone, USB-C and USB host ports on the front edge." style="max-width: 100%; width: 100%;">
+
+The TBD-16 is a compact 16-track groovebox from Berlin-based dadamachines: a
+standalone instrument for synthesis, sampling, sequencing and effects in a
+110 × 110 × 25 mm case. It is built on the open-source CTAG TBD audio platform.
+Plug in USB-C power, connect speakers or headphones, and start making music.
+No computer, no Eurorack case, no setup required.
+
+The product page is the one place for the current specifications, price and
+availability:
 
 .. raw:: html
 
-   <!-- Quick-nav jump links -->
    <div style="display:flex; gap:0.75em; flex-wrap:wrap; margin:1.5em 0 2em;">
-     <a href="#technical-specifications" class="hw-nav-btn">Tech Specs</a>
-     <a href="#connectivity" class="hw-nav-btn">Connectivity</a>
-     <a href="#assets" class="hw-nav-btn">Assets</a>
-     <a href="#getting-started" class="hw-nav-btn">Getting Started</a>
-     <a href="https://dadamachines.com/shop/" class="hw-nav-btn hw-cta">Buy</a>
+     <a href="https://dadamachines.com/products/tbd-16-groovebox/" class="hw-btn-primary">TBD-16 product page</a>
+     <a href="https://dadamachines.com" class="hw-btn-secondary">dadamachines.com</a>
    </div>
 
 
-Overview
-========
-
-The TBD-16 is a complete desktop instrument built around the open-source CTAG TBD audio
-engine. Plug in power and it boots into the default Groovebox / Drum Machine firmware
-with 16 tracks. No computer, no Eurorack case, no setup required.
-
-- **30 buttons** --- Transport, track select, mute, pattern controls
-- **4 endless potentiometers** (with push-switch) --- 360° rotation for parameter control
-- **2.4" OLED display** --- 128 × 64 px, shows track state, menus, and parameter values
-- **19 RGB LEDs** --- Visual feedback for track state, sequencing, and modes
-- **50+ DSP plugins** --- Synthesizers, effects, drum machines, granular engines, and more
-- **Two independent channels** --- Run any two plugins simultaneously
-- **Portable** --- Works with any USB power bank; an optional
-  `power bank mount <https://www.amazon.de/dp/B0BCK5Y852>`_ clips on the back
-- **Open source** --- Write plugins in C++, test in the simulator, flash to hardware
-
-
-Technical Specifications
-========================
+At a glance
+===========
 
 .. list-table::
    :widths: 30 70
    :header-rows: 0
 
-   * - **Processors**
-     - ESP32-P4 (DSP) · RP2350B (UI/MIDI) · ESP32-C6 (WiFi) --- `see Processors section <#processors>`_
-   * - **Audio Codec**
-     - `TLV320AIC3254 <https://www.ti.com/product/en-us/TLV320AIC3254/part-details/TLV320AIC3254IRHBR>`_ --- Stereo 24-bit ADC/DAC with embedded miniDSP
-   * - **Sample Rate**
-     - 44.1 kHz (firmware default; codec supports 8--192 kHz)
-   * - **Bit Depth**
-     - 32-bit I2S bus · 32-bit float internal processing
-   * - **Processing Buffer**
-     - 32 stereo frames (0.73 ms per buffer at 44.1 kHz)
-   * - **DAC SNR**
-     - > 110 dB (A-weighted, measured)
-   * - **DAC THD+N**
-     - 0.018 % / −75 dB (1 kHz, 0 dBV, measured)
-   * - **ADC SNR**
-     - 93 dB typical (codec datasheet)
-   * - **Channel Separation**
-     - −83 dB (measured)
-   * - **Audio I/O**
-     - Stereo line in · stereo line out · headphone out (all TRS 3.5 mm)
-   * - **MIDI**
-     - 2× TRS In (Type-A) · 2× TRS Out · USB MIDI · USB Host MIDI
-   * - **USB Ports**
-     - 3× USB-C · 1× USB-A Host
-   * - **Wireless**
-     - WiFi (ESP32-C6) · Ableton Link
-   * - **Storage**
-     - 2× micro SD (P4 + RP2350)
-   * - **Display**
-     - 2.4" OLED, 128 × 64 px
+   * - **Sound**
+     - 16 tracks, 2 FX tracks and a master track; more than 40 sound machines
+       and effects
    * - **Controls**
-     - 30 buttons · 4 endless pots (with push-switch) · volume wheel
-   * - **LEDs**
-     - 19 RGB LEDs
+     - 4 endless potentiometers, buttons with RGB feedback, a volume control
+       and a 2.4″ OLED display
+   * - **Processing**
+     - ESP32-P4 for audio, RP2350B for UI and MIDI, ESP32-C6 for Wi-Fi.
+       44.1 kHz, 32-bit float internal processing
+   * - **Audio**
+     - Two stereo inputs, stereo main output, separate headphone/cue output
+   * - **MIDI and sync**
+     - 2× TRS MIDI in, 2× TRS MIDI out (Type-A), USB MIDI, USB host,
+       Ableton Link, Eurorack clock/reset
+   * - **Storage**
+     - Built-in, user-replaceable microSD card for projects and samples
    * - **Power**
-     - USB-C (5 V) --- works with any USB power bank or adapter
-   * - **Dimensions**
-     - *Coming soon*
-   * - **Weight**
-     - *Coming soon*
+     - USB-C (5 V); works with any USB power bank, mount included
+   * - **Case**
+     - 110 × 110 × 25 mm, anodised aluminium top, powder-coated steel base
+
+Wireless connectivity is Wi-Fi and Ableton Link.
 
 
-Processors
-==========
+Connections
+===========
 
-.. list-table::
-   :header-rows: 1
-   :widths: 18 18 22 42
-
-   * - Chip
-     - Role
-     - Core
-     - Key Specs
-   * - `ESP32-P4 <https://www.espressif.com/en/products/socs/esp32-p4>`_
-     - DSP Engine
-     - Dual RISC-V @ 400 MHz
-     - 32 MB stacked PSRAM · 16 MB Flash · AI/vector instructions · USB 2.0 OTG
-   * - `RP2350B <https://www.raspberrypi.com/products/rp2350/>`_
-     - UI / MIDI
-     - Dual Arm Cortex-M33 @ 150 MHz
-     - 520 KB SRAM · 48 GPIO · 8× 12-bit ADC · 12× PIO state machines · FPU + DSP · TrustZone + TRNG
-   * - **ESP32-C6**
-     - WiFi
-     - Single RISC-V
-     - WiFi 6 (802.11ax) · Bluetooth 5 · managed by the P4
-
-The P4 and RP2350B communicate via SPI. The RP2350B handles all UI input and MIDI
-and forwards control data to the P4; the P4 runs audio processing and sends status
-and Ableton Link data back.
-
-
-Connectivity
-============
-
-Audio
------
-
-- Stereo **line input** (TRS 3.5 mm)
-- Stereo **line output** (TRS 3.5 mm)
-- Stereo **headphone output** (TRS 3.5 mm) with volume wheel
-
-
-Audio Performance
------------------
-
-The TBD-16 uses the `TLV320AIC3254 <https://www.ti.com/product/en-us/TLV320AIC3254>`_
-stereo audio codec from Texas Instruments. Below is a summary of the hardware
-capabilities and the firmware defaults, followed by measured performance data.
-
-**Hardware vs. firmware defaults**
-
-.. list-table::
-   :header-rows: 1
-   :widths: 30 35 35
-
-   * - Parameter
-     - Hardware Capability
-     - Firmware Default
-   * - Sample rate
-     - 8 kHz -- 192 kHz
-     - 44.1 kHz
-   * - I2S word length
-     - 16 / 20 / 24 / 32 bit
-     - 32 bit
-   * - Internal processing
-     - ---
-     - 32-bit float
-   * - MCLK
-     - ---
-     - 256 × fs = 11.29 MHz (Audio PLL)
-   * - DAC oversampling (DOSR)
-     - ---
-     - 128
-   * - ADC oversampling (AOSR)
-     - ---
-     - 128
-   * - Processing buffer
-     - ---
-     - 32 stereo frames (0.73 ms)
-   * - DMA buffering
-     - ---
-     - 4 × 32 frames (2.9 ms)
-   * - PLL
-     - Available
-     - Disabled (direct MCLK clocking)
-   * - ADC high-pass filter
-     - Programmable IIR
-     - First-order IIR at ~3.7 Hz (DC blocking)
-
-**Measured performance** (line output, DAC only)
-
-Measured with a MOTU UltraLite AVB reference interface and
-`ARTA <https://artalabs.hr/>`_ spectrum analyzer software.
-Test signal: 1 kHz sine (SineSrc plugin), output level calibrated to 0 dBV
-(1 V\ :sub:`rms` , full scale).
-
-.. list-table::
-   :header-rows: 1
-   :widths: 40 30 30
-
-   * - Parameter
-     - Left Channel
-     - Right Channel
-   * - THD+N (1 kHz, 0 dBV)
-     - 0.018 %
-     - 0.023 %
-   * - SNR to first harmonic
-     - ~80 dB
-     - ~78 dB
-   * - SNR to noise floor
-     - > 110 dB
-     - > 110 dB
-   * - Noise floor (DAC muted)
-     - > 120 dB
-     - > 120 dB
-   * - Channel separation
-     - −83 dB
-     - −83 dB
-
-**Codec datasheet ratings** (for reference, TI test conditions)
-
-.. list-table::
-   :header-rows: 1
-   :widths: 35 25 20 20
-
-   * - Parameter
-     - Path
-     - Typical
-     - Min
-   * - DAC SNR (A-weighted)
-     - Line out
-     - 100 dB
-     - 87 dB
-   * - DAC Dynamic Range
-     - Line out
-     - 100 dB
-     - ---
-   * - DAC THD+N
-     - Line out
-     - −83 dB
-     - −70 dB
-   * - DAC SNR (A-weighted)
-     - Headphone out
-     - 100 dB
-     - 87 dB
-   * - DAC Mute Attenuation
-     - Line out
-     - 119 dB
-     - ---
-   * - ADC SNR (A-weighted)
-     - Single-ended
-     - 93 dB
-     - 80 dB
-   * - ADC Dynamic Range
-     - Single-ended
-     - 92 dB
-     - ---
-   * - ADC THD+N
-     - Single-ended
-     - −85 dB
-     - −70 dB
-
-Full electrical characteristics are in the
-`TLV320AIC3254 datasheet <https://www.ti.com/lit/ds/symlink/tlv320aic3254.pdf>`_.
-
-MIDI
-----
-
-All connections follow the `TRS Type-A standard <https://minimidi.world/>`_ ---
-no adapters or special cables needed.
-
-.. list-table::
-   :header-rows: 1
-   :widths: 25 75
-
-   * - Connection
-     - Details
-   * - **TRS MIDI In 1**
-     - TRS 3.5 mm Type-A input for keyboards, sequencers, and controllers
-   * - **TRS MIDI In 2 / Clock**
-     - Second TRS 3.5 mm Type-A input; doubles as Clock/Reset input for
-       Eurorack and modular sync (use a 3.5 mm splitter cable for separate
-       Clock and Reset).
-
-       **Note:** Analog Clock/Reset requires toggling the switch on the bottom of the case.
-   * - **TRS MIDI Out 1**
-     - TRS 3.5 mm Type-A output for sending MIDI to external gear
-   * - **TRS MIDI Out 2**
-     - Second TRS 3.5 mm Type-A output
-   * - **USB MIDI**
-     - Class-compliant USB MIDI via USB-C #1 (no drivers required on any OS)
-   * - **USB Host MIDI**
-     - Connect MIDI controllers directly via USB-A Host Port
-
-MIDI is processed by the **RP2350** front-end processor. External MIDI
-messages (TRS or USB) are received by the RP2350 and forwarded to the ESP32-P4,
-where plugins can respond to Note On/Off, Control Change, Pitch Bend, Program
-Change, and Clock messages. The RP2350 also runs its own generators, sequencers,
-and arpeggiators that control plugins via the SPI bus.
+All MIDI connections follow the `TRS Type-A standard <https://minimidi.world/>`_,
+so no adapters or special cables are needed.
 
 .. tip::
 
-   For wireless tempo sync without MIDI cables, use
-   :doc:`Ableton Link </get_started/15_wifi_and_link>` instead of MIDI clock.
+   For wireless tempo sync without MIDI cables, use Ableton Link instead of
+   MIDI clock.
 
 
-USB
----
-
-.. list-table::
-   :header-rows: 1
-   :widths: 25 75
-
-   * - Port
-     - Function
-   * - **USB-C #1**
-     - ESP32-P4 Device (High Speed): USB MIDI, USB Network
-       (web interface without WiFi), firmware flashing via JTAG
-   * - **USB-C #2**
-     - Additional power and/or RP2350 Device
-   * - **USB-C #3**
-     - ESP32-P4 JTAG (front panel)
-   * - **USB-A**
-     - USB Host Port for MIDI controllers and other USB peripherals
-
-
-WiFi
-----
-
-Configuration and preset management interface via ESP32-C6.
-See :doc:`WiFi & Ableton Link </get_started/15_wifi_and_link>`.
-
-
-SD Cards
---------
-
-Two slots: P4 (config, samples, web UI) + RP2350 (firmware images, user data).
-See :doc:`Storage & Samples </get_started/20_storage>`.
-
-
-Assets
-======
-
-Downloadable assets (datasheet, mechanical drawings) will be published here as
-they become available.
-
-..
-   Future assets:
-   - Datasheet PDF
-   - Mechanical drawing / dimensions
-   - Quick start guide PDF
-
-
-Getting Started
+Getting started
 ===============
 
-Your TBD-16 ships ready to use:
-
-1. :doc:`Using Your TBD-16 </get_started/10_using_your_tbd>` --- Plug in power and start making music
-2. :doc:`WiFi & Ableton Link </get_started/15_wifi_and_link>` --- Set up WiFi, web interface, and Link
-3. :doc:`Storage & Samples </get_started/20_storage>` --- Manage SD card content
-4. :doc:`Flash & Updates </flash/index>` --- Update firmware from your browser
+Playing a TBD-16: the user manual is at
+`docs.dadamachines.com/tbd-16 <https://docs.dadamachines.com/tbd-16/>`_.
+Building firmware for it: :doc:`Get Started </get_started/index>`.
 
 ----
 
 .. raw:: html
 
    <div style="display:flex; gap:0.75em; flex-wrap:wrap; margin:1.5em 0;">
-     <a href="https://dadamachines.com/shop/" class="hw-btn-primary">Buy TBD-16</a>
+     <a href="https://dadamachines.com/products/tbd-16-groovebox/" class="hw-btn-primary">TBD-16 product page</a>
      <a href="https://dadamachines.com" class="hw-btn-secondary">dadamachines.com</a>
    </div>

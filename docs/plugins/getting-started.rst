@@ -30,7 +30,7 @@ Espressif's official development framework for ESP32 chips.
 1a. Install ESP-IDF
 --------------------
 
-The project requires **ESP-IDF v5.5.1** or newer.
+The project builds with **ESP-IDF v5.5.3** (the version the repository's CI uses).
 
 **macOS / Linux** — clone the ESP-IDF, check out the right tag, fetch
 submodules, then run the toolchain installer:
@@ -41,7 +41,7 @@ submodules, then run the toolchain installer:
     cd ~/esp
     git clone --recursive https://github.com/espressif/esp-idf.git
     cd esp-idf
-    git checkout v5.5.1
+    git checkout v5.5.3
     git submodule update --init --recursive
 
 .. code-block:: bash
@@ -52,7 +52,7 @@ submodules, then run the toolchain installer:
 
 Download and run the
 `ESP-IDF Tools Installer <https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/windows-setup.html>`_.
-Select ESP-IDF v5.5.1 during installation.
+Select ESP-IDF v5.5.3 during installation.
 
 
 1b. Install System Dependencies
@@ -77,8 +77,9 @@ Espressif provides a VS Code extension for ESP-IDF development:
 3. Search for **ESP-IDF** and install the Espressif extension.
 4. Run the setup wizard (``Cmd+Shift+P`` > "ESP-IDF: Configure ESP-IDF Extension").
 
-This gives you integrated build, flash, and monitor commands. You can also work
-entirely from the terminal if you prefer.
+This gives you integrated build and monitor commands. Flash with
+``bin/flash.sh`` (step 5), not with the extension's flash command: it works like
+``idf.py flash``. You can also work entirely from the terminal if you prefer.
 
 
 2. Get the Source
@@ -126,25 +127,32 @@ This compiles the entire DSP engine, all plugins, the web server, and WiFi
 stack. The first build takes several minutes. Subsequent builds are incremental
 and much faster.
 
-The output is at ``build/ctag-tbd.bin``.
+The firmware image is ``build/dada-tbd.bin``.
 
 
 5. Flash to Your TBD-16
 =========================
 
-Connect your TBD-16 via USB and flash:
+Connect the TBD-16's **front JTAG port** (USB-C #3) to your computer, keep
+**back port #1** connected for power, and run from the repository root:
 
 .. code-block:: bash
 
-    idf.py flash
+    ./bin/flash.sh                    # finds /dev/cu.usbmodem* on macOS
+    ./bin/flash.sh /dev/ttyACM0       # or name the port (Linux)
 
-To flash and open the serial monitor in one step:
+``bin/flash.sh`` writes the bootloader, the partition table, the OTA data and
+``build/dada-tbd.bin`` with esptool. Do **not** use ``idf.py flash``: it writes
+OTA data that can make the unit restart in a loop.
+
+To watch the serial output:
 
 .. code-block:: bash
 
-    idf.py flash monitor
+    idf.py -p <PORT> monitor
 
-Press ``Ctrl+]`` to exit the monitor.
+Press ``Ctrl+]`` to exit the monitor. :doc:`Flash your build </get_started/flash>`
+has the SD card and the way back to the released firmware.
 
 
 6. Alternative --- Use the Simulator
@@ -154,7 +162,7 @@ You can develop and test DSP plugins **without any hardware** using the TBD
 Simulator. It runs the full DSP engine on your computer with a local web
 interface.
 
-See the :doc:`Simulator Guide <simulator>` for setup instructions.
+See the :doc:`Simulator Guide </get_started/simulator>` for setup instructions.
 
 This is ideal for:
 
@@ -190,6 +198,6 @@ Next Steps
    system works.
 -  :doc:`Step-by-Step Plugin Guide <step-by-step>` --- Create your first
    audio plugin from scratch.
--  :doc:`Simulator <simulator>` --- Develop plugins on your computer without
+-  :doc:`Simulator </get_started/simulator>` --- Develop plugins on your computer without
    hardware.
 -  :doc:`Web API Reference <web-api>` --- Control plugins remotely over WiFi.
