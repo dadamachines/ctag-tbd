@@ -18,7 +18,7 @@
 //     (a separate lint; not built yet)
 //   - missing default values in mp-GrooveBoxRack.json
 //
-// Usage:  ./rack-lint                       # lint sdcard_image/data/synthdefinitions.json
+// Usage:  ./rack-lint                       # lint sdcard_image/factory/synthdefinitions.json
 //         ./rack-lint --json <path>         # lint a specific synthdefinitions file
 //         ./rack-lint --strict              # exit 1 if any warning, not just any error
 //

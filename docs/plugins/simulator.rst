@@ -399,13 +399,13 @@ and re-runs the headless tests on every save. Needs ``fswatch`` (macOS:
 Registering a New Plugin
 ------------------------
 
-The simulator **re-scans** ``sdcard_image/data/sp/mui-*.json`` for the plugin list on every
+The simulator **re-scans** ``sdcard_image/factory/plugins/mui-*.json`` for the plugin list on every
 startup, so a new (or renamed) plugin appears as soon as you restart ``tbd-sim`` --- no
 manual step needed. (On the *device* the list is cached in ``spm-config.json``'s
 ``availableProcessors`` to keep boot fast; the simulator ignores that cache.)
 
 If something still looks stale --- e.g. after pulling changes --- a ``git checkout
-sdcard_image/data/spm-config.json`` resets that file (the simulator writes runtime state into
+sdcard_image/factory/spm-config.json`` resets that file (the simulator writes runtime state into
 it, so it tends to get dirty), then restart.
 
 

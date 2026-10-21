@@ -51,7 +51,7 @@ static std::vector<VoiceLookup> g_voices;
 static bool loadVoiceTableFromSynthdef() {
     g_voices.clear();
     // load-test runs from simulator/build; synthdefinitions.json lives at
-    // ../../sdcard_image/data/synthdefinitions.json (same relative path the rest
+    // ../../sdcard_image/factory/synthdefinitions.json (same relative path the rest
     // of the simulator uses; see SimSPManager.cpp).
     const char* path = "../../sdcard_image/factory/synthdefinitions.json";
     std::ifstream in(path);
@@ -241,7 +241,7 @@ static int test_one(const std::string& id) {
 static int test_machine(const std::string& argId) {
     if (g_voices.empty()) {
         printf("=== load-test --machine: synthdefinitions.json could not be loaded ===\n");
-        printf("Expected at ../../sdcard_image/data/synthdefinitions.json — run load-test\n"
+        printf("Expected at ../../sdcard_image/factory/synthdefinitions.json — run load-test\n"
                "from simulator/build/ (the same cwd the rest of the simulator uses).\n");
         return 2;
     }

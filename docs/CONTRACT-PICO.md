@@ -86,7 +86,7 @@ registry built once in `Init()`. After the refactor:
 - The ESP-IDF firmware (`idf.py build`) compiles to 0x338fe0 bytes (was 0x338200 —
   +3.5 KB for `std::function` slots in the registry; still 36% partition headroom).
 - No file under `main/` was modified.
-- No file under `sdcard_image/data/` was modified.
+- No file under `sdcard_image/factory/` was modified.
 
 **Conclusion: the PICO ↔ P4 contract on `dada-tbd-master` is preserved.** Flashing
 this firmware to a TBD-16 paired with a PICO running `tbd-pico-seq3@dada-tbd-master`

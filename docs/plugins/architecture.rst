@@ -90,7 +90,7 @@ Each plugin consists of these files:
 
 .. code-block:: text
 
-   sdcard_image/data/sp/
+   sdcard_image/factory/plugins/
        mui-MyPlugin.json       # UI definition (parameters, groups, hints)
        mp-MyPlugin.json        # Preset storage (auto-generated)
 

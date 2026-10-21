@@ -51,9 +51,9 @@ if(nargs == 3){
         console.log('Usage, see source file!');
         process.exit(-1);
     }
-    muiIn = '../sdcard_image/data/sp/mui-' + process.argv[2] + '.json';
+    muiIn = '../sdcard_image/factory/plugins/mui-' + process.argv[2] + '.json';
     mui = JSON.parse(fs.readFileSync(muiIn));
-    mp = '../sdcard_image/data/sp/mp-' + process.argv[2] + '.json';
+    mp = '../sdcard_image/factory/plugins/mp-' + process.argv[2] + '.json';
     hppIn = '../components/ctagSoundProcessor/ctagSoundProcessor' + process.argv[2] + '.hpp';
     hppOut = hppIn;
     cppIn = '../components/ctagSoundProcessor/ctagSoundProcessor' + process.argv[2] + '.cpp';

@@ -49,7 +49,7 @@ MIDI) feeds it MIDI; in the :doc:`desktop simulator <simulator>` you play it fro
 The track / machine map: ``synthdefinitions.json``
 ==================================================
 
-``sdcard_image/data/synthdefinitions.json`` is the canonical description of the rack's
+``sdcard_image/factory/synthdefinitions.json`` is the canonical description of the rack's
 tracks. For each track it gives the ``index``, ``type`` (``drum`` / ``synth`` / ``fx``),
 display ``name``, ``midichannel`` (**0-based**), ``drumnote`` (drum tracks only), ``basecc``
 (the CC offset for that track's params), and the ordered ``machines`` list. There is also a
@@ -267,14 +267,14 @@ automatically and prints the snippets for step 4.)
    ``rack/*.cpp`` are picked up automatically by the build (they're globbed when
    ``CONFIG_TBD_USE_SD_CARD`` is set — which it is on the TBD-16 and in the simulator).
 
-2. **Describe it in** ``sdcard_image/data/synthdefinitions.json`` — add the machine's id
+2. **Describe it in** ``sdcard_image/factory/synthdefinitions.json`` — add the machine's id
    (e.g. ``"myv"``) to the relevant track's ``machines`` list, and add a ``machines`` entry
    with its CC ``parameters`` (each ``{ "id": "...", "name": "...", "type": "cc", "ctrl": N,
    "def": D }``).
 
 3. **Add the WebUI knobs** — add a parameter group for the new machine to
-   ``sdcard_image/data/sp/mui-GrooveBoxRack.json`` (so the WebUI's GrooveBoxRack view shows
-   a tab + sliders for it), and the default values to ``sdcard_image/data/sp/mp-GrooveBoxRack.json``.
+   ``sdcard_image/factory/plugins/mui-GrooveBoxRack.json`` (so the WebUI's GrooveBoxRack view shows
+   a tab + sliders for it), and the default values to ``sdcard_image/factory/plugins/mp-GrooveBoxRack.json``.
 
 4. **Hook it into the rack** — in ``components/ctagSoundProcessor/ctagSoundProcessorGrooveBoxRack.{hpp,cpp}``,
    five small insertions (every one of these is what ``rackgen.js -i`` does for you):

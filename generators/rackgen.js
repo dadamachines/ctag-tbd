@@ -5,9 +5,9 @@ TBD-16 — GrooveBoxRack machine scaffolder.
 Reads a small descriptor JSON (see rack-template.json) and emits:
   - components/ctagSoundProcessor/rack/<className>.{hpp,cpp}  — class boilerplate
     (atomic param members, registerParamAndCC() calls in Init(), Process() skeleton)
-  - patches for sdcard_image/data/synthdefinitions.json
-                 sdcard_image/data/sp/mui-GrooveBoxRack.json
-                 sdcard_image/data/sp/mp-GrooveBoxRack.json
+  - patches for sdcard_image/factory/synthdefinitions.json
+                 sdcard_image/factory/plugins/mui-GrooveBoxRack.json
+                 sdcard_image/factory/plugins/mp-GrooveBoxRack.json
   - in -i mode, ALSO auto-inserts 4 wiring snippets directly into
     components/ctagSoundProcessor/ctagSoundProcessorGrooveBoxRack.{hpp,cpp}:
       * one member line  (hpp)
@@ -45,9 +45,9 @@ catch (e) { console.error(`could not parse ${descPath}: ${e.message}`); process.
 // ------ paths ----------------------------------------------------------------------------
 // the descriptor / generators live in <repo>/generators ; resolve repo root from this script
 const repoRoot     = path.resolve(__dirname, '..');
-const synthdefPath = path.join(repoRoot, 'sdcard_image/data/synthdefinitions.json');
-const muiPath      = path.join(repoRoot, 'sdcard_image/data/sp/mui-GrooveBoxRack.json');
-const mpPath       = path.join(repoRoot, 'sdcard_image/data/sp/mp-GrooveBoxRack.json');
+const synthdefPath = path.join(repoRoot, 'sdcard_image/factory/synthdefinitions.json');
+const muiPath      = path.join(repoRoot, 'sdcard_image/factory/plugins/mui-GrooveBoxRack.json');
+const mpPath       = path.join(repoRoot, 'sdcard_image/factory/plugins/mp-GrooveBoxRack.json');
 const rackDir      = path.join(repoRoot, 'components/ctagSoundProcessor/rack');
 const tmplDrumHpp  = path.join(__dirname, 'RackTemplateDrum.hpp');
 const tmplDrumCpp  = path.join(__dirname, 'RackTemplateDrum.cpp');
@@ -290,11 +290,11 @@ if (inPlace) {
     console.log(`(.bak files kept for every file we touched — diff if anything looks off.)`);
 } else {
     console.log('\n--- patches to apply (dry run; pass -i to apply them automatically) ---');
-    console.log(`\n# 1. sdcard_image/data/synthdefinitions.json — append "${desc.id}" to tracks[${desc.track}].machines (before "${insertBefore}"), then append:`);
+    console.log(`\n# 1. sdcard_image/factory/synthdefinitions.json — append "${desc.id}" to tracks[${desc.track}].machines (before "${insertBefore}"), then append:`);
     console.log(JSON.stringify(synthdefMachineEntry, null, 2));
-    console.log(`\n# 2. sdcard_image/data/sp/mui-GrooveBoxRack.json — push into params[${desc.track}].params:`);
+    console.log(`\n# 2. sdcard_image/factory/plugins/mui-GrooveBoxRack.json — push into params[${desc.track}].params:`);
     console.log(JSON.stringify(muiGroup, null, 2));
-    console.log(`\n# 3. sdcard_image/data/sp/mp-GrooveBoxRack.json — extend patches[0].params with:`);
+    console.log(`\n# 3. sdcard_image/factory/plugins/mp-GrooveBoxRack.json — extend patches[0].params with:`);
     console.log(JSON.stringify(mpDefaults, null, 2));
     console.log(`\n--- ctagSoundProcessorGrooveBoxRack wiring (4 insertions; -i applies them automatically) ---`);
     console.log(`\n# 4. ctagSoundProcessorGrooveBoxRack.hpp — add the member just before "uint32_t ch${chN}_render_time;":`);

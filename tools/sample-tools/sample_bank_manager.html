@@ -49,7 +49,7 @@
     <h1>Sample Bank Builder (128)</h1>
     <div class="row">
       <input id="dirInput" type="file" webkitdirectory multiple hidden />
-      <button id="pickBtn">Pick tbdsamples folder…</button>
+      <button id="pickBtn">Pick samples folder…</button>
       <span id="summary" class="muted">No folder loaded</span>
       <span id="counter" class="pill">0/128 selected</span>
       <button id="enableAudioBtn" title="Click once if your browser blocks autoplay">Enable audio</button>
@@ -198,7 +198,7 @@
       }
       if (!shortJsonFile) {
         summary.textContent = 'Could not find wav_info_short.json';
-        showWarning('Select the tbdsamples folder that contains wav_info_short.json.');
+        showWarning('Select the samples folder that contains wav_info_short.json.');
         return;
       }
       try {
@@ -588,7 +588,7 @@
 
     async function loadBankFromJson(arr) {
       if (!Array.isArray(arr)) throw new Error('Bank JSON must be an array');
-      if (!entries.length) throw new Error('Load a tbdsamples folder first');
+      if (!entries.length) throw new Error('Load a samples folder first');
       // Replace current bank
       selection = [];
       const usedIdx = new Set();

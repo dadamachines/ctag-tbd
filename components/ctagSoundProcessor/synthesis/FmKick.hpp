@@ -1,4 +1,5 @@
 #pragma once
+#include <cstdint>
 #include "DrumModel.hpp"
 #include "plaits/dsp/fm/operator.h"
 

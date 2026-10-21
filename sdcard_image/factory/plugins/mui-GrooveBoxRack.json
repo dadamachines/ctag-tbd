@@ -57,11 +57,6 @@
       "type": "group",
       "params": [
         {
-          "id": "ch1_db_trigger",
-          "name": "Trigger",
-          "type": "bool"
-        },
-        {
           "id": "ch1_db_accent",
           "name": "Accent",
           "type": "int",
@@ -117,11 +112,6 @@
       "name": "Channel 1 - Machine 1 - Analogue Bass Drum",
       "type": "group",
       "params": [
-        {
-          "id": "ch1_ab_trigger",
-          "name": "Trigger",
-          "type": "bool"
-        },
         {
           "id": "ch1_ab_accent",
           "name": "Accent",
@@ -300,19 +290,6 @@
         }
       ]
     },
-
-
-
-
-
-
-
-
-
-
-
-
-
     {
       "id": "ch2_group",
       "name": "Channel 2 - Drum group - Kicks 2, because why not!",
@@ -365,11 +342,6 @@
       "name": "Channel 2 - Machine 0 - FM Bass Drum",
       "type": "group",
       "params": [
-        {
-          "id": "ch2_fmb1_trigger",
-          "name": "Trigger",
-          "type": "bool"
-        },
         {
           "id": "ch2_fmb1_use_ratio_mode",
           "name": "Use Ratio Mode",
@@ -572,18 +544,6 @@
         }
       ]
     },
-
-
-
-
-
-
-
-
-
-
-
-
     {
       "id": "ch3_group",
       "name": "Channel 3 - Drum group - Snares",
@@ -637,11 +597,6 @@
       "type": "group",
       "params": [
         {
-          "id": "ch3_ds_trigger",
-          "name": "Trigger",
-          "type": "bool"
-        },
-        {
           "id": "ch3_ds_accent",
           "name": "Accent",
           "type": "int",
@@ -683,11 +638,6 @@
       "name": "Channel 3 - Machine 1 - Analogue Snare",
       "type": "group",
       "params": [
-        {
-          "id": "ch3_as_trigger",
-          "name": "Trigger",
-          "type": "bool"
-        },
         {
           "id": "ch3_as_accent",
           "name": "Accent",
@@ -859,13 +809,6 @@
         }
       ]
     },
-
-
-
-
-
-
-
     {
       "id": "ch4_group",
       "name": "Channel 4 - Drum group - Hihats",
@@ -919,11 +862,6 @@
       "type": "group",
       "params": [
         {
-          "id": "ch4_hh1_trigger",
-          "name": "Trigger",
-          "type": "bool"
-        },
-        {
           "id": "ch4_hh1_accent",
           "name": "Accent",
           "type": "int",
@@ -965,11 +903,6 @@
       "name": "Channel 4 - Machine 0 - HiHat 2",
       "type": "group",
       "params": [
-        {
-          "id": "ch4_hh2_trigger",
-          "name": "Trigger",
-          "type": "bool"
-        },
         {
           "id": "ch4_hh2_accent",
           "name": "Accent",
@@ -1141,10 +1074,6 @@
         }
       ]
     },
-
-
-
-
     {
       "id": "ch5_group",
       "name": "Channel 5 - Drum group - Rimshot",
@@ -1197,11 +1126,6 @@
       "name": "Rim Shot",
       "type": "group",
       "params": [
-        {
-          "id": "ch5_rs_trigger",
-          "name": "Trigger",
-          "type": "bool"
-        },
         {
           "id": "ch5_rs_accent",
           "name": "Accent",
@@ -1373,11 +1297,6 @@
         }
       ]
     },
-
-
-
-
-
     {
       "id": "ch6_group",
       "name": "Channel 6 - Drum group - Clap",
@@ -1430,11 +1349,6 @@
       "name": "Clap",
       "type": "group",
       "params": [
-        {
-          "id": "ch6_cl_trigger",
-          "name": "Trigger",
-          "type": "bool"
-        },
         {
           "id": "ch6_cl_f0",
           "name": "Base Frequency",
@@ -1606,14 +1520,6 @@
         }
       ]
     },
-
-
-
-
-
-
-
-    
     {
       "id": "ch7_group",
       "name": "Channel 7 - Drum group - Samples",
@@ -1795,24 +1701,6 @@
         }
       ]
     },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     {
       "id": "ch8_group",
       "name": "Channel 8 - Drum group - Samples",
@@ -1994,18 +1882,6 @@
         }
       ]
     },
-
-
-
-
-
-
-
-
-
-
-
-
     {
       "id": "ch9_group",
       "name": "Channel 9 - Synth group - Bass",
@@ -2058,11 +1934,6 @@
       "name": "TBD03",
       "type": "group",
       "params": [
-        {
-          "id": "ch9_tbd03_trigger",
-          "name": "Trigger",
-          "type": "bool"
-        },
         {
           "id": "ch9_tbd03_sync_trig",
           "name": "Sync on Trigger",
@@ -2198,7 +2069,6 @@
         }
       ]
     },
-
     {
       "id": "ch9_smp_group",
       "name": "Channel 3 - Machine 1 - Sampler",
@@ -2333,25 +2203,6 @@
         }
       ]
     },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     {
       "id": "ch10_group",
       "name": "Channel 10 - Synth group - Bass 2",
@@ -2404,11 +2255,6 @@
       "name": "TBD03",
       "type": "group",
       "params": [
-        {
-          "id": "ch10_tbd03_trigger",
-          "name": "Trigger",
-          "type": "bool"
-        },
         {
           "id": "ch10_tbd03_sync_trig",
           "name": "Sync on Trigger",
@@ -2678,26 +2524,6 @@
         }
       ]
     },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     {
       "id": "ch11_group",
       "name": "Channel 11 - Synth group - Lead",
@@ -2750,11 +2576,6 @@
       "name": "Channel 11 - Machine 0 - Macro Oscillator",
       "type": "group",
       "params": [
-        {
-          "id": "ch11_mo_enableEG",
-          "name": "Trigger",
-          "type": "bool"
-        },
         {
           "id": "ch11_mo_shape",
           "name": "Shape",
@@ -3000,24 +2821,6 @@
         }
       ]
     },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     {
       "id": "ch12_group",
       "name": "Channel 12 - Synth group - Lead 2",
@@ -3272,11 +3075,6 @@
       "type": "group",
       "params": [
         {
-          "id": "ch12_mo_enableEG",
-          "name": "Trigger",
-          "type": "bool"
-        },
-        {
           "id": "ch12_mo_shape",
           "name": "Shape",
           "type": "int",
@@ -3392,21 +3190,126 @@
       "name": "Channel 12 - Machine 2 - TBDings",
       "type": "group",
       "params": [
-        { "id": "ch12_tbd_model",  "name": "Model",      "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch12_tbd_freq",   "name": "Freq",       "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch12_tbd_struc",  "name": "Structure",  "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch12_tbd_pos",    "name": "Position",   "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch12_tbd_bright", "name": "Brightness", "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch12_tbd_damp",   "name": "Damping",    "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch12_tbd_chord",  "name": "Chord",      "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch12_tbd_poly",   "name": "Polyphony",  "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch12_tbd_envsh",  "name": "Env Shape",  "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch12_tbd_vela",   "name": "Vel Amount", "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch12_tbd_air",    "name": "Air",        "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch12_tbd_pluck",  "name": "Pluck",      "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch12_tbd_mtype",  "name": "Mod Type",   "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch12_tbd_mdpth",  "name": "Mod Depth",  "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch12_tbd_mrate",  "name": "Mod Rate",   "type": "int", "min": 0, "max": 4095, "step": 1 }
+        {
+          "id": "ch12_tbd_model",
+          "name": "Model",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch12_tbd_freq",
+          "name": "Freq",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch12_tbd_struc",
+          "name": "Structure",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch12_tbd_pos",
+          "name": "Position",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch12_tbd_bright",
+          "name": "Brightness",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch12_tbd_damp",
+          "name": "Damping",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch12_tbd_chord",
+          "name": "Chord",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch12_tbd_poly",
+          "name": "Polyphony",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch12_tbd_envsh",
+          "name": "Env Shape",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch12_tbd_vela",
+          "name": "Vel Amount",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch12_tbd_air",
+          "name": "Air",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch12_tbd_pluck",
+          "name": "Pluck",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch12_tbd_mtype",
+          "name": "Mod Type",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch12_tbd_mdpth",
+          "name": "Mod Depth",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch12_tbd_mrate",
+          "name": "Mod Rate",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        }
       ]
     },
     {
@@ -3414,17 +3317,94 @@
       "name": "Channel 12 - Machine 3 - TBDaits",
       "type": "group",
       "params": [
-        { "id": "ch12_aits_model",  "name": "Model",     "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch12_aits_freq",   "name": "Freq",      "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch12_aits_harm",   "name": "Harmonics", "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch12_aits_timbre", "name": "Timbre",    "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch12_aits_morph",  "name": "Morph",     "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch12_aits_decay",  "name": "Decay",     "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch12_aits_color",  "name": "Color",     "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch12_aits_level",  "name": "Level",     "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch12_aits_fmod",   "name": "FM Mod",    "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch12_aits_tmod",   "name": "Timbre Mod","type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch12_aits_mmod",   "name": "Morph Mod", "type": "int", "min": 0, "max": 4095, "step": 1 }
+        {
+          "id": "ch12_aits_model",
+          "name": "Model",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch12_aits_freq",
+          "name": "Freq",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch12_aits_harm",
+          "name": "Harmonics",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch12_aits_timbre",
+          "name": "Timbre",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch12_aits_morph",
+          "name": "Morph",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch12_aits_decay",
+          "name": "Decay",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch12_aits_color",
+          "name": "Color",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch12_aits_level",
+          "name": "Level",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch12_aits_fmod",
+          "name": "FM Mod",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch12_aits_tmod",
+          "name": "Timbre Mod",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch12_aits_mmod",
+          "name": "Morph Mod",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        }
       ]
     },
     {
@@ -3561,29 +3541,6 @@
         }
       ]
     },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     {
       "id": "ch13_group",
       "name": "Channel 13 - Synth group - Samples 2",
@@ -3765,24 +3722,6 @@
         }
       ]
     },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     {
       "id": "ch14_group",
       "name": "Channel 14 - Synth group - Samples 3",
@@ -3964,20 +3903,6 @@
         }
       ]
     },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     {
       "id": "ch15_group",
       "name": "Channel 15 - Synth group - Chordo",
@@ -4030,11 +3955,6 @@
       "name": "Polypad",
       "type": "group",
       "params": [
-        {
-          "id": "ch15_pp_enableEG",
-          "name": "Trigger",
-          "type": "bool"
-        },
         {
           "id": "ch15_pp_pitch",
           "name": "Pitch",
@@ -4217,21 +4137,126 @@
       "name": "Channel 15 - Machine 1 - TBDings",
       "type": "group",
       "params": [
-        { "id": "ch15_tbd_model",  "name": "Model",      "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch15_tbd_freq",   "name": "Freq",       "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch15_tbd_struc",  "name": "Structure",  "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch15_tbd_pos",    "name": "Position",   "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch15_tbd_bright", "name": "Brightness", "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch15_tbd_damp",   "name": "Damping",    "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch15_tbd_chord",  "name": "Chord",      "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch15_tbd_poly",   "name": "Polyphony",  "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch15_tbd_envsh",  "name": "Env Shape",  "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch15_tbd_vela",   "name": "Vel Amount", "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch15_tbd_air",    "name": "Air",        "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch15_tbd_pluck",  "name": "Pluck",      "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch15_tbd_mtype",  "name": "Mod Type",   "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch15_tbd_mdpth",  "name": "Mod Depth",  "type": "int", "min": 0, "max": 4095, "step": 1 },
-        { "id": "ch15_tbd_mrate",  "name": "Mod Rate",   "type": "int", "min": 0, "max": 4095, "step": 1 }
+        {
+          "id": "ch15_tbd_model",
+          "name": "Model",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch15_tbd_freq",
+          "name": "Freq",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch15_tbd_struc",
+          "name": "Structure",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch15_tbd_pos",
+          "name": "Position",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch15_tbd_bright",
+          "name": "Brightness",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch15_tbd_damp",
+          "name": "Damping",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch15_tbd_chord",
+          "name": "Chord",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch15_tbd_poly",
+          "name": "Polyphony",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch15_tbd_envsh",
+          "name": "Env Shape",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch15_tbd_vela",
+          "name": "Vel Amount",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch15_tbd_air",
+          "name": "Air",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch15_tbd_pluck",
+          "name": "Pluck",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch15_tbd_mtype",
+          "name": "Mod Type",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch15_tbd_mdpth",
+          "name": "Mod Depth",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        },
+        {
+          "id": "ch15_tbd_mrate",
+          "name": "Mod Rate",
+          "type": "int",
+          "min": 0,
+          "max": 4095,
+          "step": 1
+        }
       ]
     },
     {
@@ -4368,27 +4393,6 @@
         }
       ]
     },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     {
       "id": "ch16_group",
       "name": "Channel 16 - Input group",

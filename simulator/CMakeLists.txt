@@ -48,6 +48,11 @@ endif()
 
 #rtaudio
 set(RTAUDIO_BUILD_STATIC_LIBS TRUE)
+# macOS arm64: a stray Intel /usr/local/lib/libjack.dylib trips RtAudio's
+# auto-detect and breaks linking. Force off so the Apple-Silicon build works.
+if(APPLE AND CMAKE_SYSTEM_PROCESSOR STREQUAL "arm64")
+    set(RTAUDIO_API_JACK OFF CACHE BOOL "Build JACK audio server API" FORCE)
+endif()
 add_subdirectory(rtaudio)
 
 #esp-dsp
@@ -208,7 +213,7 @@ target_include_directories(load-test PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/../comp
 target_include_directories(load-test PRIVATE ${CMAKE_CURRENT_BINARY_DIR}/gen_include)
 target_include_directories(load-test PRIVATE ${Boost_INCLUDE_DIR})
 
-# rack-lint: cross-checks sdcard_image/data/synthdefinitions.json against the rack's
+# rack-lint: cross-checks sdcard_image/factory/synthdefinitions.json against the rack's
 # runtime voice registry — catches "JSON lists machine X but no voice flips on for it"
 # and a few related drifts.  Run before authoring a new voice + as a pre-commit gate.
 add_executable(rack-lint tests/rack_lint.cpp

@@ -52,9 +52,9 @@ const PORT = parseInt(process.argv[2], 10) || 3001;
 const REPO_ROOT = path.resolve(__dirname, '..', '..', '..');
 const WEBROOT = path.resolve(__dirname, '..');
 const FACTORY_DIR = path.resolve(REPO_ROOT, 'sdcard_image', 'factory');
-const SAMPLE_ROOT = path.resolve(REPO_ROOT, 'sample_rom', 'tbdsamples');
+const SAMPLE_ROOT = path.resolve(REPO_ROOT, 'sdcard_image', 'samples', 'factory');
 const SDCARD_ROOT = path.resolve(REPO_ROOT, 'sdcard_image');
-const DATA_DIR = SDCARD_ROOT; // Legacy alias — was sdcard_image/data/, now uses SD card root
+const DATA_DIR = SDCARD_ROOT; // Resolves to the sdcard_image/ root (factory/ + user/ overlays)
 
 // ───────── MIME types ─────────
 const MIME = {

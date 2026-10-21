@@ -539,7 +539,10 @@ void WebServer::Start() {
         }
     };
 
-    // ── /api/v2/samples — minimal: file/kit listing stub + serve config JSON from data/ ──
+    // ── /api/v2/samples — minimal: file/kit listing stub + serve config JSON ──
+    // Config files live in the factory overlay (matches the firmware's
+    // StorageOverlay convention: /factory/ for read-only defaults, /user/
+    // for runtime state).  Falls back to {} when the file isn't present.
     server.resource["^/api/v2/samples"]["GET"] = [](shared_ptr<HttpServer::Response> response,
                                                     shared_ptr<HttpServer::Request> request) {
         try {
@@ -547,7 +550,7 @@ void WebServer::Start() {
             for (auto &f: request->parse_query_string()) if (f.first == "getconfig") getconfig = f.second;
             SimpleWeb::CaseInsensitiveMultimap jh; jh.emplace("Content-Type", "application/json");
             if (!getconfig.empty()) {
-                boost::filesystem::path p = boost::filesystem::path("../../sdcard_image/data") / getconfig;
+                boost::filesystem::path p = boost::filesystem::path("../../sdcard_image/factory") / getconfig;
                 if (boost::filesystem::exists(p)) {
                     ifstream ifs(p.string(), ios::binary | ios::ate);
                     auto sz = ifs.tellg(); ifs.seekg(0);

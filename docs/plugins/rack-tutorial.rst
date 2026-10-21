@@ -99,7 +99,7 @@ everything else. Create ``generators/rack-my2.json``:
 The cross-references this enforces:
 
 - ``track: 1`` is the *Kick 2* track — its MIDI channel and note number come from
-  ``sdcard_image/data/synthdefinitions.json``. (Drum track 1 is channel-index 9,
+  ``sdcard_image/factory/synthdefinitions.json``. (Drum track 1 is channel-index 9,
   note 37 — but you don't need to write that anywhere; the registry registration
   will read it from the descriptor automatically.)
 - ``type: "drum"`` means you implement ``trigger()`` (not ``noteOn``/``noteOff``);
@@ -164,7 +164,7 @@ The new files live at:
 - ``components/ctagSoundProcessor/rack/RackMy2.{hpp,cpp}`` — your class.
 - Five edits in ``components/ctagSoundProcessor/ctagSoundProcessorGrooveBoxRack.{hpp,cpp}``
   — wiring.
-- Updated ``sdcard_image/data/synthdefinitions.json`` and ``mui-/mp-GrooveBoxRack.json``.
+- Updated ``sdcard_image/factory/synthdefinitions.json`` and ``mui-/mp-GrooveBoxRack.json``.
 
 
 Step 4 — Build the simulator (CMake re-config required)
@@ -317,9 +317,9 @@ What changed (after Step 3 + the DSP edits):
    components/ctagSoundProcessor/rack/RackMy2.cpp        (new)
    components/ctagSoundProcessor/ctagSoundProcessorGrooveBoxRack.hpp   (+2 lines)
    components/ctagSoundProcessor/ctagSoundProcessorGrooveBoxRack.cpp   (+5 lines)
-   sdcard_image/data/synthdefinitions.json               (+1 machine entry, +id in track 1's machines list)
-   sdcard_image/data/sp/mui-GrooveBoxRack.json           (+1 param group)
-   sdcard_image/data/sp/mp-GrooveBoxRack.json            (+2 preset defaults)
+   sdcard_image/factory/synthdefinitions.json               (+1 machine entry, +id in track 1's machines list)
+   sdcard_image/factory/plugins/mui-GrooveBoxRack.json           (+1 param group)
+   sdcard_image/factory/plugins/mp-GrooveBoxRack.json            (+2 preset defaults)
    generators/rack-my2.json                              (new — keep this for re-running rackgen)
 
 If you want to roll back, every file ``rackgen.js -i`` touched has a ``.bak``

@@ -850,7 +850,7 @@ namespace CTAG::SPIAPI{
             // case RequestType::GetSynthDefinitionsJSON:
             //     {
             //         std::string json = "{}";
-            //         const std::string path = CTAG::RESOURCES::sdcardRoot + "/data/synthdefinitions.json";
+            //         const std::string path = CTAG::RESOURCES::sdcardRoot + "/factory/synthdefinitions.json";
             //         FILE *f = fopen(path.c_str(), "r");
             //         if (f) {
             //             fseek(f, 0, SEEK_END);
