@@ -29,6 +29,10 @@ cmake .. && make tbd-sim
 ./tbd-sim --device <N>    # run from simulator/build, then open http://localhost:8080/
 ```
 
+When it works, the WebUI says **Connected** and lists the plugins; play `GrooveBoxRack` from the step sequencer and keyboard at http://localhost:8080/ctrl.
+
+![The simulator's WebUI with GrooveBoxRack loaded](docs/get_started/images/simulator-webui.jpg)
+
 **Cloned before 2026-10-21?** The history was rewritten, so `git pull` does not update you: run `git fetch origin && git reset --hard origin/dada-tbd-master && git submodule sync --recursive && git submodule update --init --recursive`, delete `simulator/build`, or clone again.
 
 Clone this repository, not the CTAG upstream (`ctag-fh-kiel/ctag-tbd`): the upstream simulator expects esp-dsp in `managed_components/` and has no TBD-16 WebUI API. Details and troubleshooting: [Desktop simulator](https://dadamachines.github.io/ctag-tbd/get_started/simulator.html).

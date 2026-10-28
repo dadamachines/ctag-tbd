@@ -138,6 +138,21 @@ From the build directory (it expects to be run from ``simulator/build/`` --- the
 Then open **both** ``http://localhost:8080/`` and ``http://localhost:8080/ctrl`` in Chrome /
 Edge / Opera. The simulator runs until you press **Enter** in the terminal.
 
+.. figure:: images/simulator-webui.jpg
+   :alt: The simulator's WebUI with GrooveBoxRack loaded
+   :width: 100%
+
+   ``http://localhost:8080/``: the badge next to TBD-16 says **Connected**, the PLUGINS list
+   on the left shows every plugin, and ``GrooveBoxRack`` is loaded on channels A+B.
+
+.. figure:: images/simulator-ctrl.jpg
+   :alt: The simulator's control page with drum pads, step sequencer and keyboard
+   :width: 100%
+
+   ``http://localhost:8080/ctrl``: the **GrooveBoxRack (MIDI)** tab with the drum pads, the
+   step sequencer and the keyboard. Press **4/4 demo**, then **Play**. Legacy CTAG plugins
+   are played from the **Legacy / Eurorack plugins (CV / Trig / Pot)** tab instead.
+
 .. tip::
 
    Paste **one command per line** into the terminal --- don't paste lines with ``#`` comments;
