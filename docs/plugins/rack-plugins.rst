@@ -206,7 +206,7 @@ After ``-i`` succeeds the only thing left to write is the DSP body inside ``Proc
       cd generators
       node rackgen.js rack-mybd.json
 
-3. When the preview looks right, run **``-i``**. The tool writes everything into the source
+3. When the preview looks right, run ``-i``. The tool writes everything into the source
    tree (leaving ``.bak`` files next to each file it touched) and prints a per-file status
    report (``patched: ✓ … wired: ✓ … ✓ … ✓ … ✓ …``):
 

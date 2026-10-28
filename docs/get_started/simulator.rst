@@ -292,7 +292,7 @@ a4_dub kit, wavetables, etc.) and the simulator's ``--srom`` flag defaults to it
 plugins play out of the box. Pass ``--srom path/to/other.tbd`` to use a different one (e.g.
 one you exported from your TBD-16's WebUI).
 
-**Racks --- ``GrooveBoxRack`` and ``DrumRack``** are stereo multi-voice racks (the TBD-16
+**Racks ---** ``GrooveBoxRack`` **and** ``DrumRack`` are stereo multi-voice racks (the TBD-16
 groovebox engine). They work in the simulator, but ``GrooveBoxRack`` is **MIDI-driven**, not
 trigger-driven: on the hardware it's played by the RP2350 step sequencer (or external MIDI),
 and the simulator has neither --- so it's silent until you send it MIDI from the ``/ctrl``
@@ -470,17 +470,17 @@ interface** rather than built-in/HDMI audio, pick that device with ``--device N`
 laptop into power (not battery), and close CPU-heavy apps. (This is a desktop-only artifact;
 the device itself runs the same DSP on a realtime scheduler.)
 
-**The simulator exits right after ``Trying to open device id: N``.** It couldn't open that
+**The simulator exits right after** ``Trying to open device id: N``**.** It couldn't open that
 audio device at 44100 Hz / 32-bit float. Run ``./tbd-sim --list`` and try another
 ``--device``; ``--output`` forces output-only.
 
-**``Trying to open sample rom file ... sample-rom.tbd``** — the sample-rom is bundled at
+``Trying to open sample rom file ... sample-rom.tbd`` — the sample-rom is bundled at
 ``tools/sample-tools/sample-rom.tbd`` and the simulator's ``--srom`` defaults to it, so this is
 just the load message (you should see ``Done loading samples, total size … bytes`` right
 after). If it WARNs that the file is missing, you're probably running the binary from
 somewhere other than ``simulator/build`` — pass ``--srom /full/path/sample-rom.tbd`` to fix.
 
-**The shell gets stuck at an ``if>`` prompt** when you paste commands --- you pasted a line
+**The shell gets stuck at an** ``if>`` **prompt** when you paste commands --- you pasted a line
 containing a ``#`` comment (interactive ``zsh`` doesn't treat ``#`` as a comment, and a word
 like *"if"* in the comment text starts an ``if`` statement). Press **Ctrl-C**; paste only the
 bare command. (Or ``setopt interactivecomments``.)

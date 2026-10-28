@@ -161,7 +161,7 @@ Troubleshooting
    ``curl "http://localhost:8080/api/v2/plugins?action=list"`` must return a JSON list
    of plugins; an empty answer or a 404 means a simulator built from another tree.
 
-**``idf.py`` not found, or the wrong ESP-IDF version**
+``idf.py`` **not found, or the wrong ESP-IDF version**
    Run ``. ~/esp/esp-idf/export.sh`` in this terminal; ``idf.py --version``
    should say ``v5.5.3``.
 
