@@ -58,8 +58,9 @@ Build and run:
    ./tbd-sim --list              # the sound cards and their numbers
    ./tbd-sim --device <N>        # <N> from the list
 
-The simulator needs a sound card at 44.1 kHz; ``--output`` uses an output-only
-device.
+Start ``tbd-sim`` from ``simulator/build``: it finds the WebUI and the virtual SD
+card (``sdcard_image/``) through relative paths. The simulator needs a sound card
+at 44.1 kHz; ``--output`` uses an output-only device.
 
 .. list-table::
    :header-rows: 1
@@ -131,7 +132,38 @@ Troubleshooting
 **Errors about missing files in a submodule**
    Run ``git submodule update --init --recursive``.
 
-**``idf.py`` not found, or the wrong ESP-IDF version**
+**You cloned before October 2026 and ran** ``git pull``
+   The ``dada-tbd-master`` history was rewritten on 2026-10-21, so ``git pull`` on an
+   older clone fails or merges two histories, and the old build files stay. Reset to
+   the published branch (this discards local changes; back them up first) and build
+   from a clean folder:
+
+   .. code-block:: bash
+
+      git fetch origin
+      git reset --hard origin/dada-tbd-master
+      git submodule sync --recursive
+      git submodule update --init --recursive
+      rm -rf simulator/build
+
+   Or simply clone again.
+
+**CMake asks for** ``../managed_components/espressif__esp-dsp`` **or** ``dspm_mult_f32_ansi.c``
+   That tree is the CTAG upstream (``ctag-fh-kiel/ctag-tbd``) or a clone from before the
+   history rewrite (see above), not the current repository.
+   Clone ``dadamachines/ctag-tbd`` as above; its simulator takes esp-dsp from the
+   ``simulator/esp-dsp`` submodule and needs neither ESP-IDF nor ``managed_components/``.
+   Check with ``git remote -v`` from the repository root.
+
+**The WebUI shows "Offline" and no plugins** ("No plugin loaded", empty PLUGINS list)
+   Start ``tbd-sim`` from ``simulator/build``: it reads the plugin definitions (the
+   "virtual SD card", ``sdcard_image/``) through the relative path ``../../sdcard_image``.
+   ``curl "http://localhost:8080/api/v2/plugins?action=list"`` must return a JSON list
+   of plugins; an empty answer or a 404 means a simulator built from another tree.
+   When it works, the badge next to TBD-16 says "Connected", the PLUGINS list shows all
+   plugins, and channel A has ``GrooveBoxRack`` loaded.
+
+``idf.py`` **not found, or the wrong ESP-IDF version**
    Run ``. ~/esp/esp-idf/export.sh`` in this terminal; ``idf.py --version``
    should say ``v5.5.3``.
 

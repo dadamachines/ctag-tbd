@@ -42,9 +42,9 @@ tutorial.
        MIDI notes; you just write the DSP. **15 Machines ship today**; this is the
        path most rack-style work takes.
 
-Not sure yet? Read the **:doc:`Plugins </plugins/index>`** section first — it has
+Not sure yet? Read the :doc:`Plugins </plugins/index>` section first — it has
 the developer workflow (Quickstart, Simulator, Architecture, Build & Flash, Web
-API), and the **:doc:`Quickstart <quickstart>`** in particular has a side-by-side
+API), and the :doc:`Quickstart <quickstart>` in particular has a side-by-side
 comparison that helps you decide between a Plugin and a Machine.
 
 **Machines build on top of the Plugins knowledge**, so the natural reading order

@@ -19,7 +19,7 @@ The simulator greatly speeds up plugin development.
 
 ```
 -h [ --help ] this help message
--s [ --srom ] file for sample rom emulation, default ../../sample_rom/sample-rom.tbd
+-s [ --srom ] file for sample rom emulation, default ../../tools/sample-tools/sample-rom.tbd
 -l [ --list ] list sound cards
 -d [ --device ] sound card device id, default 0
 -o [ --output ] use output only (if no duplex device available)
@@ -50,7 +50,7 @@ Installation instructions for the dependencies needed to compile the simulator o
 ### Debian based distributions
 
 ```sh
-sudo apt-get install libboost-filesystem-dev libboost-thread-dev libboost-program-options-dev libasound2-dev
+sudo apt-get install build-essential cmake libboost-filesystem-dev libboost-thread-dev libboost-program-options-dev libasound2-dev
 ```
 
 ### Arch Linux based distributions
@@ -102,13 +102,18 @@ mingw32-make
         - Set Boost_DIR environment variable (e.g. Boost_DIR=c:\boost)
             - https://www.jetbrains.com/help/clion/add-environment-variables-and-program-arguments.html
 
-## Clone with complete CTAG-TBD source repository
+## Clone the dadamachines TBD-16 repository
+
+Clone this repository, not the CTAG upstream (`ctag-fh-kiel/ctag-tbd`): the upstream
+simulator expects esp-dsp in `../managed_components/` and has no `/api/v2` endpoints,
+so the TBD-16 WebUI shows no plugins.
 
 ```sh
-git clone https://github.com/ctag-fh-kiel/ctag-tbd.git
+git clone --recursive -b dada-tbd-master https://github.com/dadamachines/ctag-tbd.git
 cd ctag-tbd
-git submodule update --init --recursive
 ```
+
+esp-dsp comes in as the submodule `simulator/esp-dsp`; no ESP-IDF or `managed_components/` is needed.
 
 ## Compile and run
 
@@ -118,9 +123,12 @@ cd simulator (from ctag-tbd folder)
 mkdir build
 cd build
 cmake ..
-make
+make tbd-sim
 ./tbd-sim
 ```
+
+Start `tbd-sim` from `simulator/build`: it finds the WebUI and the virtual SD card
+(`sdcard_image/`) through relative paths (`../../sdcard_image`).
 
 # Limitations
 

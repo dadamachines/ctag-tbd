@@ -17,6 +17,26 @@ TBD-16 is open to community contributions. Every sound on the device — synths,
 
 You can iterate without flashing the device — a **desktop simulator** runs the same plugin code on your laptop with a web UI in the browser.
 
+### Try the simulator (macOS / Linux, no hardware, no ESP-IDF)
+
+```sh
+# Debian/Ubuntu: sudo apt install build-essential cmake git libboost-filesystem-dev libboost-thread-dev libboost-program-options-dev libasound2-dev
+# macOS:         brew install cmake boost
+git clone --recursive https://github.com/dadamachines/ctag-tbd.git
+cd ctag-tbd/simulator && mkdir -p build && cd build
+cmake .. && make tbd-sim
+./tbd-sim --list          # pick your sound card
+./tbd-sim --device <N>    # run from simulator/build, then open http://localhost:8080/
+```
+
+When it works, the WebUI says **Connected** and lists the plugins; play `GrooveBoxRack` from the step sequencer and keyboard at http://localhost:8080/ctrl.
+
+![The simulator's WebUI with GrooveBoxRack loaded](docs/get_started/images/simulator-webui.jpg)
+
+**Cloned before 2026-10-21?** The history was rewritten, so `git pull` does not update you: run `git fetch origin && git reset --hard origin/dada-tbd-master && git submodule sync --recursive && git submodule update --init --recursive`, delete `simulator/build`, or clone again.
+
+Clone this repository, not the CTAG upstream (`ctag-fh-kiel/ctag-tbd`): the upstream simulator expects esp-dsp in `managed_components/` and has no TBD-16 WebUI API. Details and troubleshooting: [Desktop simulator](https://dadamachines.github.io/ctag-tbd/get_started/simulator.html).
+
 ### Get started in 4 links
 
 - **[Plugin documentation](https://dadamachines.github.io/ctag-tbd/plugins/)** — API reference, parameter / macro / preset model, GrooveBoxRack machine guide, examples

@@ -18,8 +18,9 @@ Prerequisites
 =============
 
 -  Node.js installed (for the code generator).
--  The TBD repository cloned with submodules (see :doc:`Plugin Development Setup </plugins/getting-started>`).
--  ESP-IDF environment configured.
+-  The TBD repository (``dadamachines/ctag-tbd``) cloned with submodules (see :doc:`Development setup </get_started/setup>`).
+-  For testing on your computer: the :doc:`Desktop simulator </get_started/simulator>` built once.
+-  For the hardware only: the ESP-IDF environment (see :doc:`Plugin Development Setup </plugins/getting-started>`).
 
 Step 1: Define the UI
 =====================
@@ -118,10 +119,12 @@ your audio processing:
 Step 5: Register the Plugin
 ============================
 
-The plugin must be registered in the factory. Reset the plugin cache so
-the system discovers your new plugin on the next boot:
+The simulator re-scans the plugins on every start, so there is nothing to do for it.
 
-1.  Open ``sdcard_image/factory/spm-config.json``.
+The device caches the list of plugins. Reset that cache so it discovers your new
+plugin on the next boot:
+
+1.  Open ``sdcard_image/user/config/device.json`` (on the device: ``/sdcard/user/config/device.json``).
 2.  Delete the ``"availableProcessors": [ ... ],`` block.
 3.  Save the file.
 
@@ -140,10 +143,19 @@ Or test with the simulator:
 .. code-block:: bash
 
    cd simulator && mkdir -p build && cd build
-   cmake .. && make
+   cmake .. && make tbd-sim
    ./tbd-sim
 
+Run ``cmake ..`` again after adding a plugin so the new files are found, and start
+``tbd-sim`` from ``simulator/build``. Then open ``http://localhost:8080/``.
+
 Your plugin should now appear in the Web UI plugin selector.
+
+To play it in the simulator, open ``http://localhost:8080/ctrl`` and use the
+**Legacy / Eurorack plugins (CV / Trig / Pot)** tab: map a CV, trigger or pot to a
+parameter in the WebUI, then drive it from there. These plugins have no MIDI input, so
+the drum pads, the step sequencer and the keyboard on the **GrooveBoxRack (MIDI)** tab
+do not play them; those only play ``GrooveBoxRack``.
 
 Modifying Parameters Later
 ==========================

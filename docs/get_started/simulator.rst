@@ -61,7 +61,7 @@ Debian / Ubuntu
 
 .. code-block:: bash
 
-   sudo apt-get install libboost-filesystem-dev libboost-thread-dev libboost-program-options-dev libasound2-dev
+   sudo apt-get install build-essential cmake git libboost-filesystem-dev libboost-thread-dev libboost-program-options-dev libasound2-dev
 
 Arch Linux
 ----------
@@ -90,12 +90,18 @@ Restart the shell, then install the toolchain:
 Building
 ========
 
-1. Make sure the git submodules are present (the simulator pulls in RtAudio,
-   Simple-Web-Server, esp-dsp, and the Mutable ``eurorack`` sources as submodules):
+1. Clone this repository with its submodules (the simulator pulls in RtAudio,
+   Simple-Web-Server, esp-dsp, and the Mutable ``eurorack`` sources as submodules).
+   Use ``dadamachines/ctag-tbd``, not the CTAG upstream ``ctag-fh-kiel/ctag-tbd``:
+   the upstream simulator does not build the same way and has no TBD-16 WebUI API.
+   ESP-IDF is **not** needed for the simulator.
 
    .. code-block:: bash
 
-      git submodule update --init --recursive
+      git clone --recursive https://github.com/dadamachines/ctag-tbd.git
+      cd ctag-tbd
+
+   Already cloned without ``--recursive``? Run ``git submodule update --init --recursive``.
 
 2. Navigate to the simulator directory and create a build folder:
 
@@ -131,6 +137,21 @@ From the build directory (it expects to be run from ``simulator/build/`` --- the
 
 Then open **both** ``http://localhost:8080/`` and ``http://localhost:8080/ctrl`` in Chrome /
 Edge / Opera. The simulator runs until you press **Enter** in the terminal.
+
+.. figure:: images/simulator-webui.jpg
+   :alt: The simulator's WebUI with GrooveBoxRack loaded
+   :width: 100%
+
+   ``http://localhost:8080/``: the badge next to TBD-16 says **Connected**, the PLUGINS list
+   on the left shows every plugin, and ``GrooveBoxRack`` is loaded on channels A+B.
+
+.. figure:: images/simulator-ctrl.jpg
+   :alt: The simulator's control page with drum pads, step sequencer and keyboard
+   :width: 100%
+
+   ``http://localhost:8080/ctrl``: the **GrooveBoxRack (MIDI)** tab with the drum pads, the
+   step sequencer and the keyboard. Press **4/4 demo**, then **Play**. Legacy CTAG plugins
+   are played from the **Legacy / Eurorack plugins (CV / Trig / Pot)** tab instead.
 
 .. tip::
 
@@ -286,7 +307,7 @@ a4_dub kit, wavetables, etc.) and the simulator's ``--srom`` flag defaults to it
 plugins play out of the box. Pass ``--srom path/to/other.tbd`` to use a different one (e.g.
 one you exported from your TBD-16's WebUI).
 
-**Racks --- ``GrooveBoxRack`` and ``DrumRack``** are stereo multi-voice racks (the TBD-16
+**Racks ---** ``GrooveBoxRack`` **and** ``DrumRack`` are stereo multi-voice racks (the TBD-16
 groovebox engine). They work in the simulator, but ``GrooveBoxRack`` is **MIDI-driven**, not
 trigger-driven: on the hardware it's played by the RP2350 step sequencer (or external MIDI),
 and the simulator has neither --- so it's silent until you send it MIDI from the ``/ctrl``
@@ -313,7 +334,7 @@ wired in the simulator yet — that needs the macro/preset layer ported over, se
 
 ``DrumRack`` is the simpler, trigger-driven rack --- map its ``*_trigger`` parameters to a
 ``/ctrl`` trigger in the WebUI and use the **CV / Triggers / Pots** tab. (The committed
-``spm-config.json`` boots ``GrooveBoxRack`` on channel A by default.)
+``sdcard_image/user/config/device.json`` boots ``GrooveBoxRack`` on channel A by default.)
 
 
 The Control page (the ``/ctrl`` page)
@@ -416,16 +437,47 @@ Registering a New Plugin
 
 The simulator **re-scans** ``sdcard_image/factory/plugins/mui-*.json`` for the plugin list on every
 startup, so a new (or renamed) plugin appears as soon as you restart ``tbd-sim`` --- no
-manual step needed. (On the *device* the list is cached in ``spm-config.json``'s
+manual step needed. (On the *device* the list is cached in ``user/config/device.json``'s
 ``availableProcessors`` to keep boot fast; the simulator ignores that cache.)
 
 If something still looks stale --- e.g. after pulling changes --- a ``git checkout
-sdcard_image/factory/spm-config.json`` resets that file (the simulator writes runtime state into
+sdcard_image/user/config/device.json`` resets that file (the simulator writes runtime state into
 it, so it tends to get dirty), then restart.
 
 
 Troubleshooting / Known Issues
 ==============================
+
+**You cloned before October 2026 and ran** ``git pull``
+   The ``dada-tbd-master`` history was rewritten on 2026-10-21, so ``git pull`` on an
+   older clone fails or merges two histories, and the old build files stay. Reset to
+   the published branch (this discards local changes; back them up first) and build
+   from a clean folder:
+
+   .. code-block:: bash
+
+      git fetch origin
+      git reset --hard origin/dada-tbd-master
+      git submodule sync --recursive
+      git submodule update --init --recursive
+      rm -rf simulator/build
+
+   Or simply clone again.
+
+**CMake asks for** ``../managed_components/espressif__esp-dsp`` **or** ``dspm_mult_f32_ansi.c``
+   That tree is the CTAG upstream (``ctag-fh-kiel/ctag-tbd``) or a clone from before the
+   history rewrite (see above), not the current repository.
+   Clone ``dadamachines/ctag-tbd`` as above; its simulator takes esp-dsp from the
+   ``simulator/esp-dsp`` submodule and needs neither ESP-IDF nor ``managed_components/``.
+   Check with ``git remote -v`` from the repository root.
+
+**The WebUI shows "Offline" and no plugins** ("No plugin loaded", empty PLUGINS list)
+   Start ``tbd-sim`` from ``simulator/build``: it reads the plugin definitions (the
+   "virtual SD card", ``sdcard_image/``) through the relative path ``../../sdcard_image``.
+   ``curl "http://localhost:8080/api/v2/plugins?action=list"`` must return a JSON list
+   of plugins; an empty answer or a 404 means a simulator built from another tree.
+   When it works, the badge next to TBD-16 says "Connected", the PLUGINS list shows all
+   plugins, and channel A has ``GrooveBoxRack`` loaded.
 
 **Occasional crackle / glitches in the audio.** The simulator runs the DSP in 32-sample
 blocks --- the same as the device --- which is a very tight ~0.7 ms latency for a
@@ -435,17 +487,17 @@ interface** rather than built-in/HDMI audio, pick that device with ``--device N`
 laptop into power (not battery), and close CPU-heavy apps. (This is a desktop-only artifact;
 the device itself runs the same DSP on a realtime scheduler.)
 
-**The simulator exits right after ``Trying to open device id: N``.** It couldn't open that
+**The simulator exits right after** ``Trying to open device id: N``**.** It couldn't open that
 audio device at 44100 Hz / 32-bit float. Run ``./tbd-sim --list`` and try another
 ``--device``; ``--output`` forces output-only.
 
-**``Trying to open sample rom file ... sample-rom.tbd``** — the sample-rom is bundled at
+``Trying to open sample rom file ... sample-rom.tbd`` — the sample-rom is bundled at
 ``tools/sample-tools/sample-rom.tbd`` and the simulator's ``--srom`` defaults to it, so this is
 just the load message (you should see ``Done loading samples, total size … bytes`` right
 after). If it WARNs that the file is missing, you're probably running the binary from
 somewhere other than ``simulator/build`` — pass ``--srom /full/path/sample-rom.tbd`` to fix.
 
-**The shell gets stuck at an ``if>`` prompt** when you paste commands --- you pasted a line
+**The shell gets stuck at an** ``if>`` **prompt** when you paste commands --- you pasted a line
 containing a ``#`` comment (interactive ``zsh`` doesn't treat ``#`` as a comment, and a word
 like *"if"* in the comment text starts an ``if`` statement). Press **Ctrl-C**; paste only the
 bare command. (Or ``setopt interactivecomments``.)
