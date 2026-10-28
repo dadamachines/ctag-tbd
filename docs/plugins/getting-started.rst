@@ -20,6 +20,11 @@ control surfaces for existing DSP plugins without touching audio code.
 
 **If you're ready for DSP**, this guide will get you set up.
 
+.. tip::
+
+   **No TBD-16, or just want to try it first?** You don't need ESP-IDF. Clone the
+   repository (step 2) and go to the :doc:`Desktop simulator </get_started/simulator>`.
+
 
 1. Install the Toolchain
 =========================

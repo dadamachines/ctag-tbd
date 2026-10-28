@@ -18,8 +18,9 @@ Prerequisites
 =============
 
 -  Node.js installed (for the code generator).
--  The TBD repository cloned with submodules (see :doc:`Plugin Development Setup </plugins/getting-started>`).
--  ESP-IDF environment configured.
+-  The TBD repository (``dadamachines/ctag-tbd``) cloned with submodules (see :doc:`Development setup </get_started/setup>`).
+-  For testing on your computer: the :doc:`Desktop simulator </get_started/simulator>` built once.
+-  For the hardware only: the ESP-IDF environment (see :doc:`Plugin Development Setup </plugins/getting-started>`).
 
 Step 1: Define the UI
 =====================
@@ -140,8 +141,11 @@ Or test with the simulator:
 .. code-block:: bash
 
    cd simulator && mkdir -p build && cd build
-   cmake .. && make
+   cmake .. && make tbd-sim
    ./tbd-sim
+
+Run ``cmake ..`` again after adding a plugin so the new files are found, and start
+``tbd-sim`` from ``simulator/build``. Then open ``http://localhost:8080/``.
 
 Your plugin should now appear in the Web UI plugin selector.
 

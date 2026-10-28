@@ -61,7 +61,7 @@ Debian / Ubuntu
 
 .. code-block:: bash
 
-   sudo apt-get install libboost-filesystem-dev libboost-thread-dev libboost-program-options-dev libasound2-dev
+   sudo apt-get install build-essential cmake git libboost-filesystem-dev libboost-thread-dev libboost-program-options-dev libasound2-dev
 
 Arch Linux
 ----------
@@ -90,12 +90,18 @@ Restart the shell, then install the toolchain:
 Building
 ========
 
-1. Make sure the git submodules are present (the simulator pulls in RtAudio,
-   Simple-Web-Server, esp-dsp, and the Mutable ``eurorack`` sources as submodules):
+1. Clone this repository with its submodules (the simulator pulls in RtAudio,
+   Simple-Web-Server, esp-dsp, and the Mutable ``eurorack`` sources as submodules).
+   Use ``dadamachines/ctag-tbd``, not the CTAG upstream ``ctag-fh-kiel/ctag-tbd``:
+   the upstream simulator does not build the same way and has no TBD-16 WebUI API.
+   ESP-IDF is **not** needed for the simulator.
 
    .. code-block:: bash
 
-      git submodule update --init --recursive
+      git clone --recursive https://github.com/dadamachines/ctag-tbd.git
+      cd ctag-tbd
+
+   Already cloned without ``--recursive``? Run ``git submodule update --init --recursive``.
 
 2. Navigate to the simulator directory and create a build folder:
 
@@ -426,6 +432,18 @@ it, so it tends to get dirty), then restart.
 
 Troubleshooting / Known Issues
 ==============================
+
+**CMake asks for** ``../managed_components/espressif__esp-dsp`` **or** ``dspm_mult_f32_ansi.c``
+   That tree is the CTAG upstream (``ctag-fh-kiel/ctag-tbd``), not this repository.
+   Clone ``dadamachines/ctag-tbd`` as above; its simulator takes esp-dsp from the
+   ``simulator/esp-dsp`` submodule and needs neither ESP-IDF nor ``managed_components/``.
+   Check with ``git remote -v`` from the repository root.
+
+**The WebUI opens but shows no plugins** ("No plugin loaded", empty PLUGINS list)
+   Start ``tbd-sim`` from ``simulator/build``: it reads the plugin definitions (the
+   "virtual SD card", ``sdcard_image/``) through the relative path ``../../sdcard_image``.
+   ``curl "http://localhost:8080/api/v2/plugins?action=list"`` must return a JSON list
+   of plugins; an empty answer or a 404 means a simulator built from another tree.
 
 **Occasional crackle / glitches in the audio.** The simulator runs the DSP in 32-sample
 blocks --- the same as the device --- which is a very tight ~0.7 ms latency for a

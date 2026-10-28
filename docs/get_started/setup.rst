@@ -132,16 +132,17 @@ Troubleshooting
 **Errors about missing files in a submodule**
    Run ``git submodule update --init --recursive``.
 
-**CMake asks for** ``../managed_components/espressif__esp-dsp``
-   You have the CTAG upstream (``ctag-fh-kiel/ctag-tbd``) or an old checkout.
-   Clone ``dadamachines/ctag-tbd`` (branch ``dada-tbd-master``) as above; its
-   simulator takes esp-dsp from the ``simulator/esp-dsp`` submodule and needs
-   no ESP-IDF.
+**CMake asks for** ``../managed_components/espressif__esp-dsp`` **or** ``dspm_mult_f32_ansi.c``
+   That tree is the CTAG upstream (``ctag-fh-kiel/ctag-tbd``), not this repository.
+   Clone ``dadamachines/ctag-tbd`` as above; its simulator takes esp-dsp from the
+   ``simulator/esp-dsp`` submodule and needs neither ESP-IDF nor ``managed_components/``.
+   Check with ``git remote -v`` from the repository root.
 
-**The WebUI loads but shows no plugins**
-   Check that ``tbd-sim`` runs from ``simulator/build`` and that
-   ``http://localhost:8080/api/v2/plugins?action=list`` returns the plugin list.
-   An empty answer or a 404 means a simulator built from another tree (see above).
+**The WebUI opens but shows no plugins** ("No plugin loaded", empty PLUGINS list)
+   Start ``tbd-sim`` from ``simulator/build``: it reads the plugin definitions (the
+   "virtual SD card", ``sdcard_image/``) through the relative path ``../../sdcard_image``.
+   ``curl "http://localhost:8080/api/v2/plugins?action=list"`` must return a JSON list
+   of plugins; an empty answer or a 404 means a simulator built from another tree.
 
 **``idf.py`` not found, or the wrong ESP-IDF version**
    Run ``. ~/esp/esp-idf/export.sh`` in this terminal; ``idf.py --version``
