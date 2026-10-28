@@ -456,11 +456,13 @@ Troubleshooting / Known Issues
    ``simulator/esp-dsp`` submodule and needs neither ESP-IDF nor ``managed_components/``.
    Check with ``git remote -v`` from the repository root.
 
-**The WebUI opens but shows no plugins** ("No plugin loaded", empty PLUGINS list)
+**The WebUI shows "Offline" and no plugins** ("No plugin loaded", empty PLUGINS list)
    Start ``tbd-sim`` from ``simulator/build``: it reads the plugin definitions (the
    "virtual SD card", ``sdcard_image/``) through the relative path ``../../sdcard_image``.
    ``curl "http://localhost:8080/api/v2/plugins?action=list"`` must return a JSON list
    of plugins; an empty answer or a 404 means a simulator built from another tree.
+   When it works, the badge next to TBD-16 says "Connected", the PLUGINS list shows all
+   plugins, and channel A has ``GrooveBoxRack`` loaded.
 
 **Occasional crackle / glitches in the audio.** The simulator runs the DSP in 32-sample
 blocks --- the same as the device --- which is a very tight ~0.7 ms latency for a
