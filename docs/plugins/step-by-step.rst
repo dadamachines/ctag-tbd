@@ -151,6 +151,12 @@ Run ``cmake ..`` again after adding a plugin so the new files are found, and sta
 
 Your plugin should now appear in the Web UI plugin selector.
 
+To play it in the simulator, open ``http://localhost:8080/ctrl`` and use the
+**Legacy / Eurorack plugins (CV / Trig / Pot)** tab: map a CV, trigger or pot to a
+parameter in the WebUI, then drive it from there. These plugins have no MIDI input, so
+the drum pads, the step sequencer and the keyboard on the **GrooveBoxRack (MIDI)** tab
+do not play them; those only play ``GrooveBoxRack``.
+
 Modifying Parameters Later
 ==========================
 
