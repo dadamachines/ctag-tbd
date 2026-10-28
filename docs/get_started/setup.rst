@@ -58,8 +58,9 @@ Build and run:
    ./tbd-sim --list              # the sound cards and their numbers
    ./tbd-sim --device <N>        # <N> from the list
 
-The simulator needs a sound card at 44.1 kHz; ``--output`` uses an output-only
-device.
+Start ``tbd-sim`` from ``simulator/build``: it finds the WebUI and the virtual SD
+card (``sdcard_image/``) through relative paths. The simulator needs a sound card
+at 44.1 kHz; ``--output`` uses an output-only device.
 
 .. list-table::
    :header-rows: 1
@@ -130,6 +131,17 @@ Troubleshooting
 
 **Errors about missing files in a submodule**
    Run ``git submodule update --init --recursive``.
+
+**CMake asks for** ``../managed_components/espressif__esp-dsp``
+   You have the CTAG upstream (``ctag-fh-kiel/ctag-tbd``) or an old checkout.
+   Clone ``dadamachines/ctag-tbd`` (branch ``dada-tbd-master``) as above; its
+   simulator takes esp-dsp from the ``simulator/esp-dsp`` submodule and needs
+   no ESP-IDF.
+
+**The WebUI loads but shows no plugins**
+   Check that ``tbd-sim`` runs from ``simulator/build`` and that
+   ``http://localhost:8080/api/v2/plugins?action=list`` returns the plugin list.
+   An empty answer or a 404 means a simulator built from another tree (see above).
 
 **``idf.py`` not found, or the wrong ESP-IDF version**
    Run ``. ~/esp/esp-idf/export.sh`` in this terminal; ``idf.py --version``
