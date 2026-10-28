@@ -132,8 +132,25 @@ Troubleshooting
 **Errors about missing files in a submodule**
    Run ``git submodule update --init --recursive``.
 
+**You cloned before October 2026 and ran** ``git pull``
+   The ``dada-tbd-master`` history was rewritten on 2026-10-21, so ``git pull`` on an
+   older clone fails or merges two histories, and the old build files stay. Reset to
+   the published branch (this discards local changes; back them up first) and build
+   from a clean folder:
+
+   .. code-block:: bash
+
+      git fetch origin
+      git reset --hard origin/dada-tbd-master
+      git submodule sync --recursive
+      git submodule update --init --recursive
+      rm -rf simulator/build
+
+   Or simply clone again.
+
 **CMake asks for** ``../managed_components/espressif__esp-dsp`` **or** ``dspm_mult_f32_ansi.c``
-   That tree is the CTAG upstream (``ctag-fh-kiel/ctag-tbd``), not this repository.
+   That tree is the CTAG upstream (``ctag-fh-kiel/ctag-tbd``) or a clone from before the
+   history rewrite (see above), not the current repository.
    Clone ``dadamachines/ctag-tbd`` as above; its simulator takes esp-dsp from the
    ``simulator/esp-dsp`` submodule and needs neither ESP-IDF nor ``managed_components/``.
    Check with ``git remote -v`` from the repository root.

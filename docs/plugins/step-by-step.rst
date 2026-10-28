@@ -119,10 +119,12 @@ your audio processing:
 Step 5: Register the Plugin
 ============================
 
-The plugin must be registered in the factory. Reset the plugin cache so
-the system discovers your new plugin on the next boot:
+The simulator re-scans the plugins on every start, so there is nothing to do for it.
 
-1.  Open ``sdcard_image/factory/spm-config.json``.
+The device caches the list of plugins. Reset that cache so it discovers your new
+plugin on the next boot:
+
+1.  Open ``sdcard_image/user/config/device.json`` (on the device: ``/sdcard/user/config/device.json``).
 2.  Delete the ``"availableProcessors": [ ... ],`` block.
 3.  Save the file.
 

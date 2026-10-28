@@ -113,7 +113,6 @@ For the full reference (parameter macros, registry helpers, channel-mixer surfac
     - Files are then changed in place
 
 ## IMPORTANT
-The TBD sound processor system is reconfigured only if the file sdcard_image/factory/spm_config.json is in initial state. The system the checks all available sound processors. If this file is not in initial state, your new plugin will not appear in the web UI.
-This is particularly important, when you use the TBD simulator, as it modifies that file.
-Probably this behaviour should be changed in future...
+On the device, the list of sound processors is cached in `sdcard_image/user/config/device.json` (`availableProcessors`). Delete that block so the device re-scans and your new plugin appears in the web UI.
+The simulator re-scans on every start; re-run `cmake ..` after adding a plugin. It writes runtime state into `device.json`, so `git checkout sdcard_image/user/config/device.json` resets it.
     

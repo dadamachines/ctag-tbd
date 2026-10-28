@@ -191,9 +191,11 @@ This is ideal for:
     session. ESP-IDF tools are not in your PATH by default.
 
 **New plugin doesn't appear in the web UI**
-    The system caches the list of available processors in ``spm-config.json``.
-    Delete the ``"availableProcessors": [ ... ],`` block from that file and
-    restart the device or simulator.
+    The device caches the list of available processors in
+    ``user/config/device.json`` on the SD card (``sdcard_image/user/config/device.json``
+    in the repository). Delete the ``"availableProcessors": [ ... ],`` block from that
+    file and restart the device. The simulator re-scans on every start: re-run
+    ``cmake ..`` and ``make tbd-sim``, then restart it.
 
 
 Next Steps

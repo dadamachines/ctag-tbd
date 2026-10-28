@@ -319,7 +319,7 @@ wired in the simulator yet — that needs the macro/preset layer ported over, se
 
 ``DrumRack`` is the simpler, trigger-driven rack --- map its ``*_trigger`` parameters to a
 ``/ctrl`` trigger in the WebUI and use the **CV / Triggers / Pots** tab. (The committed
-``spm-config.json`` boots ``GrooveBoxRack`` on channel A by default.)
+``sdcard_image/user/config/device.json`` boots ``GrooveBoxRack`` on channel A by default.)
 
 
 The Control page (the ``/ctrl`` page)
@@ -422,19 +422,36 @@ Registering a New Plugin
 
 The simulator **re-scans** ``sdcard_image/factory/plugins/mui-*.json`` for the plugin list on every
 startup, so a new (or renamed) plugin appears as soon as you restart ``tbd-sim`` --- no
-manual step needed. (On the *device* the list is cached in ``spm-config.json``'s
+manual step needed. (On the *device* the list is cached in ``user/config/device.json``'s
 ``availableProcessors`` to keep boot fast; the simulator ignores that cache.)
 
 If something still looks stale --- e.g. after pulling changes --- a ``git checkout
-sdcard_image/factory/spm-config.json`` resets that file (the simulator writes runtime state into
+sdcard_image/user/config/device.json`` resets that file (the simulator writes runtime state into
 it, so it tends to get dirty), then restart.
 
 
 Troubleshooting / Known Issues
 ==============================
 
+**You cloned before October 2026 and ran** ``git pull``
+   The ``dada-tbd-master`` history was rewritten on 2026-10-21, so ``git pull`` on an
+   older clone fails or merges two histories, and the old build files stay. Reset to
+   the published branch (this discards local changes; back them up first) and build
+   from a clean folder:
+
+   .. code-block:: bash
+
+      git fetch origin
+      git reset --hard origin/dada-tbd-master
+      git submodule sync --recursive
+      git submodule update --init --recursive
+      rm -rf simulator/build
+
+   Or simply clone again.
+
 **CMake asks for** ``../managed_components/espressif__esp-dsp`` **or** ``dspm_mult_f32_ansi.c``
-   That tree is the CTAG upstream (``ctag-fh-kiel/ctag-tbd``), not this repository.
+   That tree is the CTAG upstream (``ctag-fh-kiel/ctag-tbd``) or a clone from before the
+   history rewrite (see above), not the current repository.
    Clone ``dadamachines/ctag-tbd`` as above; its simulator takes esp-dsp from the
    ``simulator/esp-dsp`` submodule and needs neither ESP-IDF nor ``managed_components/``.
    Check with ``git remote -v`` from the repository root.
